@@ -2,6 +2,10 @@
 
 **Make room for your evening.** A working household scheduling application built on PeakShift, with a local Strands agent, checked time constraints, a visual evening plan, and a human-approved advisory calendar.
 
+[Watch the 79-second working demonstration](https://youtu.be/JFKJRdyYYUI) · [Development friction log](FRICTION_LOG.md) · [Actual verification evidence](evidence/README.md)
+
+![The actual browser after a verified local agent run](evidence/desktop.png)
+
 This is a **simulated Alexa+ experience**, using the alternative allowed by the [Amazon Developer Hackathon rules](https://amazonappdev2026.devpost.com/rules). It does not connect to Alexa, start appliances, use live electricity prices, or measure household savings. Every load and forecast is fictional. All calendar events use the clearly labeled demonstration date **October 1, 2026**, as floating local times.
 
 ## Run
