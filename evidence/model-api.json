@@ -1,0 +1,2048 @@
+{
+  "started_at": "2026-09-08T13:14:53.347780+00:00",
+  "runs": [
+    {
+      "name": "default",
+      "message": "Plan my evening.",
+      "data": {
+        "reply": "Proposed fictional evening schedule: Optional dryer: 18:00\u201319:00; Optional dishwasher: 19:30\u201321:00; Optional e-bike charger: 22:00\u201324:00. Review the exact times, then approve the advisory calendar.",
+        "reply_source": "validated_proposal_template",
+        "proposal": {
+          "constraints": {
+            "quiet_after": "21:00",
+            "jobs": {
+              "dryer": {
+                "earliest": "18:00",
+                "latest_finish": "24:00",
+                "skip": false
+              },
+              "dishwasher": {
+                "earliest": "18:00",
+                "latest_finish": "24:00",
+                "skip": false
+              },
+              "ebike": {
+                "earliest": "18:00",
+                "latest_finish": "24:00",
+                "skip": false
+              }
+            }
+          },
+          "skipped": [],
+          "warning": "Fictional Alexa+ experience simulation. Synthetic loads and tariffs. Advisory calendar only; no device control or measured savings.",
+          "skipped_job_energy_kwh": 0,
+          "status": "proposed",
+          "schedule": [
+            {
+              "job_id": "dryer",
+              "name": "Optional dryer",
+              "start": "18:00",
+              "end": "19:00",
+              "watts": 2200,
+              "duration_minutes": 60
+            },
+            {
+              "job_id": "dishwasher",
+              "name": "Optional dishwasher",
+              "start": "19:30",
+              "end": "21:00",
+              "watts": 1400,
+              "duration_minutes": 90
+            },
+            {
+              "job_id": "ebike",
+              "name": "Optional e-bike charger",
+              "start": "22:00",
+              "end": "24:00",
+              "watts": 300,
+              "duration_minutes": 120
+            }
+          ],
+          "metrics": {
+            "peak_watts": 3050,
+            "load_watts": [
+              2850,
+              3050,
+              1100,
+              2650,
+              2500,
+              2250,
+              650,
+              550,
+              750,
+              700,
+              650,
+              650
+            ],
+            "energy_kwh": 9.175,
+            "carbon_g": 3408.5,
+            "cost_dollars": 2.63775,
+            "objective": [
+              3050,
+              6817000,
+              527550000
+            ],
+            "within_capacity": true
+          },
+          "baseline_metrics": {
+            "peak_watts": 4750,
+            "load_watts": [
+              4550,
+              4750,
+              2800,
+              1550,
+              1100,
+              850,
+              650,
+              550,
+              450,
+              400,
+              350,
+              350
+            ],
+            "energy_kwh": 9.175,
+            "carbon_g": 3591.5,
+            "cost_dollars": 2.78475,
+            "objective": [
+              4750,
+              7183000,
+              556950000
+            ],
+            "within_capacity": true
+          },
+          "savings": {
+            "peak_watts": 1700,
+            "cost_dollars": 0.147
+          },
+          "optimality_proven": true,
+          "solver_status": "optimal",
+          "solver_nodes": 43,
+          "input_sha256": "b8fec3daaccfe1635655e6b6ed1e1c8fc52ce49d4307fe2f179fb02f59782d26",
+          "explanation": "Schedule preserves energy for the included jobs; peak is optimized first, then modeled carbon, then tariff. Skipped jobs are omitted, not treated as efficiency savings.",
+          "revision": 17,
+          "created_at": "2026-09-08T13:14:58.351032+00:00",
+          "execution": {
+            "provider": "ollama",
+            "evidence_type": "real-model-inference",
+            "model_id": "qwen2.5:14b",
+            "model_digest": "7cdf5a0187d5c58cc5d369b255592f7841d1c4696d45a8c8a9489440385b22f6",
+            "sdk_version": "1.54.0",
+            "model_thinking": false,
+            "started_at": "2026-09-08T13:14:53.410410+00:00",
+            "completed_at": "2026-09-08T13:14:58.349992+00:00",
+            "elapsed_seconds": 4.937,
+            "limits": {
+              "turns": 5,
+              "output_tokens": 5000,
+              "total_tokens": 18000
+            },
+            "stop_reason": "end_turn",
+            "tool_events": [
+              {
+                "tool": "read_household",
+                "args": {},
+                "result": {
+                  "constraints": {
+                    "jobs": {
+                      "dishwasher": {
+                        "earliest": "18:00",
+                        "latest_finish": "24:00",
+                        "skip": false
+                      },
+                      "dryer": {
+                        "earliest": "18:00",
+                        "latest_finish": "24:00",
+                        "skip": false
+                      },
+                      "ebike": {
+                        "earliest": "18:00",
+                        "latest_finish": "24:00",
+                        "skip": false
+                      }
+                    },
+                    "quiet_after": "21:00"
+                  },
+                  "revision": 16,
+                  "name": "Watt If fictional home",
+                  "date": "2026-10-01",
+                  "start": "18:00",
+                  "end": "24:00",
+                  "slot_minutes": 30,
+                  "jobs": [
+                    {
+                      "id": "dryer",
+                      "name": "Optional dryer",
+                      "watts": 2200,
+                      "duration_minutes": 60,
+                      "noisy": true,
+                      "deferrable": true
+                    },
+                    {
+                      "id": "dishwasher",
+                      "name": "Optional dishwasher",
+                      "watts": 1400,
+                      "duration_minutes": 90,
+                      "noisy": true,
+                      "deferrable": true
+                    },
+                    {
+                      "id": "ebike",
+                      "name": "Optional e-bike charger",
+                      "watts": 300,
+                      "duration_minutes": 120,
+                      "noisy": false,
+                      "deferrable": true
+                    }
+                  ],
+                  "warning": "Fictional Alexa+ experience simulation. Synthetic loads and tariffs. Advisory calendar only; no device control or measured savings.",
+                  "default_constraints": {
+                    "quiet_after": "21:00",
+                    "jobs": {
+                      "dryer": {
+                        "earliest": "18:00",
+                        "latest_finish": "24:00",
+                        "skip": false
+                      },
+                      "dishwasher": {
+                        "earliest": "18:00",
+                        "latest_finish": "24:00",
+                        "skip": false
+                      },
+                      "ebike": {
+                        "earliest": "18:00",
+                        "latest_finish": "24:00",
+                        "skip": false
+                      }
+                    }
+                  }
+                },
+                "elapsed_ms": 0,
+                "initiated_by": "proposal_dependency"
+              },
+              {
+                "tool": "propose_evening",
+                "args": {
+                  "changes": []
+                },
+                "resolved_changes": [],
+                "validated_patch": {},
+                "result": {
+                  "status": "proposed",
+                  "constraints": {
+                    "quiet_after": "21:00",
+                    "jobs": {
+                      "dryer": {
+                        "earliest": "18:00",
+                        "latest_finish": "24:00",
+                        "skip": false
+                      },
+                      "dishwasher": {
+                        "earliest": "18:00",
+                        "latest_finish": "24:00",
+                        "skip": false
+                      },
+                      "ebike": {
+                        "earliest": "18:00",
+                        "latest_finish": "24:00",
+                        "skip": false
+                      }
+                    }
+                  },
+                  "schedule": [
+                    {
+                      "job_id": "dryer",
+                      "name": "Optional dryer",
+                      "start": "18:00",
+                      "end": "19:00",
+                      "watts": 2200,
+                      "duration_minutes": 60
+                    },
+                    {
+                      "job_id": "dishwasher",
+                      "name": "Optional dishwasher",
+                      "start": "19:30",
+                      "end": "21:00",
+                      "watts": 1400,
+                      "duration_minutes": 90
+                    },
+                    {
+                      "job_id": "ebike",
+                      "name": "Optional e-bike charger",
+                      "start": "22:00",
+                      "end": "24:00",
+                      "watts": 300,
+                      "duration_minutes": 120
+                    }
+                  ],
+                  "metrics": {
+                    "peak_watts": 3050,
+                    "load_watts": [
+                      2850,
+                      3050,
+                      1100,
+                      2650,
+                      2500,
+                      2250,
+                      650,
+                      550,
+                      750,
+                      700,
+                      650,
+                      650
+                    ],
+                    "energy_kwh": 9.175,
+                    "carbon_g": 3408.5,
+                    "cost_dollars": 2.63775,
+                    "objective": [
+                      3050,
+                      6817000,
+                      527550000
+                    ],
+                    "within_capacity": true
+                  },
+                  "baseline_metrics": {
+                    "peak_watts": 4750,
+                    "load_watts": [
+                      4550,
+                      4750,
+                      2800,
+                      1550,
+                      1100,
+                      850,
+                      650,
+                      550,
+                      450,
+                      400,
+                      350,
+                      350
+                    ],
+                    "energy_kwh": 9.175,
+                    "carbon_g": 3591.5,
+                    "cost_dollars": 2.78475,
+                    "objective": [
+                      4750,
+                      7183000,
+                      556950000
+                    ],
+                    "within_capacity": true
+                  },
+                  "explanation": "Schedule preserves energy for the included jobs; peak is optimized first, then modeled carbon, then tariff. Skipped jobs are omitted, not treated as efficiency savings.",
+                  "approval_required": true,
+                  "advisory_only": true
+                },
+                "elapsed_ms": 0
+              }
+            ],
+            "sdk_tool_events": [
+              {
+                "type": "tool_use",
+                "tool": "propose_evening",
+                "tool_use_id": "tooluse_5bbd139605074cfaba29f9e7",
+                "args": {
+                  "changes": []
+                }
+              },
+              {
+                "type": "tool_result",
+                "tool_use_id": "tooluse_5bbd139605074cfaba29f9e7",
+                "status": "success",
+                "content": [
+                  {
+                    "text": "{\"status\": \"proposed\", \"constraints\": {\"quiet_after\": \"21:00\", \"jobs\": {\"dryer\": {\"earliest\": \"18:00\", \"latest_finish\": \"24:00\", \"skip\": false}, \"dishwasher\": {\"earliest\": \"18:00\", \"latest_finish\": \"24:00\", \"skip\": false}, \"ebike\": {\"earliest\": \"18:00\", \"latest_finish\": \"24:00\", \"skip\": false}}}, \"schedule\": [{\"job_id\": \"dryer\", \"name\": \"Optional dryer\", \"start\": \"18:00\", \"end\": \"19:00\", \"watts\": 2200, \"duration_minutes\": 60}, {\"job_id\": \"dishwasher\", \"name\": \"Optional dishwasher\", \"start\": \"19:30\", \"end\": \"21:00\", \"watts\": 1400, \"duration_minutes\": 90}, {\"job_id\": \"ebike\", \"name\": \"Optional e-bike charger\", \"start\": \"22:00\", \"end\": \"24:00\", \"watts\": 300, \"duration_minutes\": 120}], \"metrics\": {\"peak_watts\": 3050, \"load_watts\": [2850, 3050, 1100, 2650, 2500, 2250, 650, 550, 750, 700, 650, 650], \"energy_kwh\": 9.175, \"carbon_g\": 3408.5, \"cost_dollars\": 2.63775, \"objective\": [3050, 6817000, 527550000], \"within_capacity\": true}, \"baseline_metrics\": {\"peak_watts\": 4750, \"load_watts\": [4550, 4750, 2800, 1550, 1100, 850, 650, 550, 450, 400, 350, 350], \"energy_kwh\": 9.175, \"carbon_g\": 3591.5, \"cost_dollars\": 2.78475, \"objective\": [4750, 7183000, 556950000], \"within_capacity\": true}, \"explanation\": \"Schedule preserves energy for the included jobs; peak is optimized first, then modeled carbon, then tariff. Skipped jobs are omitted, not treated as efficiency savings.\", \"approval_required\": true, \"advisory_only\": true}"
+                  }
+                ]
+              }
+            ],
+            "read_count": 1,
+            "proposal_attempt_count": 1,
+            "validated_preview": true,
+            "source_clauses": [
+              {
+                "clause_id": 1,
+                "text": "Plan my evening"
+              }
+            ],
+            "grounding_method": "server_resolved_clause_ids",
+            "usage": {
+              "inputTokens": 3052,
+              "outputTokens": 153,
+              "totalTokens": 3205
+            },
+            "source_sha256": {
+              "planner.py": "01c594828a0068893a1808ebc21e6202cbcafe23f1b828f17695481a4b35a8ed",
+              "household.py": "5940e3c3150cd6ebd8a49147d0b5fc7625468a9e6795b5ec7922d4aa341240be",
+              "agent.py": "4c7dff095552793e242cff023e50c461dba0fbd4f347c00dfc1274f8f0d3a46a",
+              "app.py": "bd63a737b75d5720d2aa3e9bbe735e8a36db4199a51ff2e75efb3579fed0f7fa",
+              "requirements.txt": "cc438cf88efdda83e0b8600679f430293c71fd1fa0cfa3ca528e7dbb97cbb3f0"
+            },
+            "household_revision": 16,
+            "message_sha256": "97477b6535f058097307018f4c1cbf7ae876d247ba3e95d896e3323aae04e956",
+            "approval_performed": false,
+            "status": "completed",
+            "reply_source": "validated_proposal_template",
+            "model_response_sha256": "11ce8b67c4ef6948f45438422fe7135c261658e1001f4a07b705238b3396c49e"
+          },
+          "sha256": "80c3a4a1d7a55ca7f9def5d6ecadb96fdb8c11d79626027917c4963863db151c",
+          "id": "80c3a4a1d7a55ca7f9def5d6"
+        },
+        "trace": {
+          "provider": "ollama",
+          "evidence_type": "real-model-inference",
+          "model_id": "qwen2.5:14b",
+          "model_digest": "7cdf5a0187d5c58cc5d369b255592f7841d1c4696d45a8c8a9489440385b22f6",
+          "sdk_version": "1.54.0",
+          "model_thinking": false,
+          "started_at": "2026-09-08T13:14:53.410410+00:00",
+          "completed_at": "2026-09-08T13:14:58.349992+00:00",
+          "elapsed_seconds": 4.937,
+          "limits": {
+            "turns": 5,
+            "output_tokens": 5000,
+            "total_tokens": 18000
+          },
+          "stop_reason": "end_turn",
+          "tool_events": [
+            {
+              "tool": "read_household",
+              "args": {},
+              "result": {
+                "constraints": {
+                  "jobs": {
+                    "dishwasher": {
+                      "earliest": "18:00",
+                      "latest_finish": "24:00",
+                      "skip": false
+                    },
+                    "dryer": {
+                      "earliest": "18:00",
+                      "latest_finish": "24:00",
+                      "skip": false
+                    },
+                    "ebike": {
+                      "earliest": "18:00",
+                      "latest_finish": "24:00",
+                      "skip": false
+                    }
+                  },
+                  "quiet_after": "21:00"
+                },
+                "revision": 16,
+                "name": "Watt If fictional home",
+                "date": "2026-10-01",
+                "start": "18:00",
+                "end": "24:00",
+                "slot_minutes": 30,
+                "jobs": [
+                  {
+                    "id": "dryer",
+                    "name": "Optional dryer",
+                    "watts": 2200,
+                    "duration_minutes": 60,
+                    "noisy": true,
+                    "deferrable": true
+                  },
+                  {
+                    "id": "dishwasher",
+                    "name": "Optional dishwasher",
+                    "watts": 1400,
+                    "duration_minutes": 90,
+                    "noisy": true,
+                    "deferrable": true
+                  },
+                  {
+                    "id": "ebike",
+                    "name": "Optional e-bike charger",
+                    "watts": 300,
+                    "duration_minutes": 120,
+                    "noisy": false,
+                    "deferrable": true
+                  }
+                ],
+                "warning": "Fictional Alexa+ experience simulation. Synthetic loads and tariffs. Advisory calendar only; no device control or measured savings.",
+                "default_constraints": {
+                  "quiet_after": "21:00",
+                  "jobs": {
+                    "dryer": {
+                      "earliest": "18:00",
+                      "latest_finish": "24:00",
+                      "skip": false
+                    },
+                    "dishwasher": {
+                      "earliest": "18:00",
+                      "latest_finish": "24:00",
+                      "skip": false
+                    },
+                    "ebike": {
+                      "earliest": "18:00",
+                      "latest_finish": "24:00",
+                      "skip": false
+                    }
+                  }
+                }
+              },
+              "elapsed_ms": 0,
+              "initiated_by": "proposal_dependency"
+            },
+            {
+              "tool": "propose_evening",
+              "args": {
+                "changes": []
+              },
+              "resolved_changes": [],
+              "validated_patch": {},
+              "result": {
+                "status": "proposed",
+                "constraints": {
+                  "quiet_after": "21:00",
+                  "jobs": {
+                    "dryer": {
+                      "earliest": "18:00",
+                      "latest_finish": "24:00",
+                      "skip": false
+                    },
+                    "dishwasher": {
+                      "earliest": "18:00",
+                      "latest_finish": "24:00",
+                      "skip": false
+                    },
+                    "ebike": {
+                      "earliest": "18:00",
+                      "latest_finish": "24:00",
+                      "skip": false
+                    }
+                  }
+                },
+                "schedule": [
+                  {
+                    "job_id": "dryer",
+                    "name": "Optional dryer",
+                    "start": "18:00",
+                    "end": "19:00",
+                    "watts": 2200,
+                    "duration_minutes": 60
+                  },
+                  {
+                    "job_id": "dishwasher",
+                    "name": "Optional dishwasher",
+                    "start": "19:30",
+                    "end": "21:00",
+                    "watts": 1400,
+                    "duration_minutes": 90
+                  },
+                  {
+                    "job_id": "ebike",
+                    "name": "Optional e-bike charger",
+                    "start": "22:00",
+                    "end": "24:00",
+                    "watts": 300,
+                    "duration_minutes": 120
+                  }
+                ],
+                "metrics": {
+                  "peak_watts": 3050,
+                  "load_watts": [
+                    2850,
+                    3050,
+                    1100,
+                    2650,
+                    2500,
+                    2250,
+                    650,
+                    550,
+                    750,
+                    700,
+                    650,
+                    650
+                  ],
+                  "energy_kwh": 9.175,
+                  "carbon_g": 3408.5,
+                  "cost_dollars": 2.63775,
+                  "objective": [
+                    3050,
+                    6817000,
+                    527550000
+                  ],
+                  "within_capacity": true
+                },
+                "baseline_metrics": {
+                  "peak_watts": 4750,
+                  "load_watts": [
+                    4550,
+                    4750,
+                    2800,
+                    1550,
+                    1100,
+                    850,
+                    650,
+                    550,
+                    450,
+                    400,
+                    350,
+                    350
+                  ],
+                  "energy_kwh": 9.175,
+                  "carbon_g": 3591.5,
+                  "cost_dollars": 2.78475,
+                  "objective": [
+                    4750,
+                    7183000,
+                    556950000
+                  ],
+                  "within_capacity": true
+                },
+                "explanation": "Schedule preserves energy for the included jobs; peak is optimized first, then modeled carbon, then tariff. Skipped jobs are omitted, not treated as efficiency savings.",
+                "approval_required": true,
+                "advisory_only": true
+              },
+              "elapsed_ms": 0
+            }
+          ],
+          "sdk_tool_events": [
+            {
+              "type": "tool_use",
+              "tool": "propose_evening",
+              "tool_use_id": "tooluse_5bbd139605074cfaba29f9e7",
+              "args": {
+                "changes": []
+              }
+            },
+            {
+              "type": "tool_result",
+              "tool_use_id": "tooluse_5bbd139605074cfaba29f9e7",
+              "status": "success",
+              "content": [
+                {
+                  "text": "{\"status\": \"proposed\", \"constraints\": {\"quiet_after\": \"21:00\", \"jobs\": {\"dryer\": {\"earliest\": \"18:00\", \"latest_finish\": \"24:00\", \"skip\": false}, \"dishwasher\": {\"earliest\": \"18:00\", \"latest_finish\": \"24:00\", \"skip\": false}, \"ebike\": {\"earliest\": \"18:00\", \"latest_finish\": \"24:00\", \"skip\": false}}}, \"schedule\": [{\"job_id\": \"dryer\", \"name\": \"Optional dryer\", \"start\": \"18:00\", \"end\": \"19:00\", \"watts\": 2200, \"duration_minutes\": 60}, {\"job_id\": \"dishwasher\", \"name\": \"Optional dishwasher\", \"start\": \"19:30\", \"end\": \"21:00\", \"watts\": 1400, \"duration_minutes\": 90}, {\"job_id\": \"ebike\", \"name\": \"Optional e-bike charger\", \"start\": \"22:00\", \"end\": \"24:00\", \"watts\": 300, \"duration_minutes\": 120}], \"metrics\": {\"peak_watts\": 3050, \"load_watts\": [2850, 3050, 1100, 2650, 2500, 2250, 650, 550, 750, 700, 650, 650], \"energy_kwh\": 9.175, \"carbon_g\": 3408.5, \"cost_dollars\": 2.63775, \"objective\": [3050, 6817000, 527550000], \"within_capacity\": true}, \"baseline_metrics\": {\"peak_watts\": 4750, \"load_watts\": [4550, 4750, 2800, 1550, 1100, 850, 650, 550, 450, 400, 350, 350], \"energy_kwh\": 9.175, \"carbon_g\": 3591.5, \"cost_dollars\": 2.78475, \"objective\": [4750, 7183000, 556950000], \"within_capacity\": true}, \"explanation\": \"Schedule preserves energy for the included jobs; peak is optimized first, then modeled carbon, then tariff. Skipped jobs are omitted, not treated as efficiency savings.\", \"approval_required\": true, \"advisory_only\": true}"
+                }
+              ]
+            }
+          ],
+          "read_count": 1,
+          "proposal_attempt_count": 1,
+          "validated_preview": true,
+          "source_clauses": [
+            {
+              "clause_id": 1,
+              "text": "Plan my evening"
+            }
+          ],
+          "grounding_method": "server_resolved_clause_ids",
+          "usage": {
+            "inputTokens": 3052,
+            "outputTokens": 153,
+            "totalTokens": 3205
+          },
+          "source_sha256": {
+            "planner.py": "01c594828a0068893a1808ebc21e6202cbcafe23f1b828f17695481a4b35a8ed",
+            "household.py": "5940e3c3150cd6ebd8a49147d0b5fc7625468a9e6795b5ec7922d4aa341240be",
+            "agent.py": "4c7dff095552793e242cff023e50c461dba0fbd4f347c00dfc1274f8f0d3a46a",
+            "app.py": "bd63a737b75d5720d2aa3e9bbe735e8a36db4199a51ff2e75efb3579fed0f7fa",
+            "requirements.txt": "cc438cf88efdda83e0b8600679f430293c71fd1fa0cfa3ca528e7dbb97cbb3f0"
+          },
+          "household_revision": 16,
+          "message_sha256": "97477b6535f058097307018f4c1cbf7ae876d247ba3e95d896e3323aae04e956",
+          "approval_performed": false,
+          "status": "completed",
+          "reply_source": "validated_proposal_template",
+          "model_response_sha256": "11ce8b67c4ef6948f45438422fe7135c261658e1001f4a07b705238b3396c49e"
+        }
+      }
+    },
+    {
+      "name": "quiet",
+      "message": "Keep quiet after 8 pm.",
+      "data": {
+        "reply": "Proposed fictional evening schedule: Optional dishwasher: 18:00\u201319:30; Optional dryer: 18:00\u201319:00; Optional e-bike charger: 22:00\u201324:00. Review the exact times, then approve the advisory calendar.",
+        "reply_source": "validated_proposal_template",
+        "proposal": {
+          "constraints": {
+            "quiet_after": "20:00",
+            "jobs": {
+              "dryer": {
+                "earliest": "18:00",
+                "latest_finish": "24:00",
+                "skip": false
+              },
+              "dishwasher": {
+                "earliest": "18:00",
+                "latest_finish": "24:00",
+                "skip": false
+              },
+              "ebike": {
+                "earliest": "18:00",
+                "latest_finish": "24:00",
+                "skip": false
+              }
+            }
+          },
+          "skipped": [],
+          "warning": "Fictional Alexa+ experience simulation. Synthetic loads and tariffs. Advisory calendar only; no device control or measured savings.",
+          "skipped_job_energy_kwh": 0,
+          "status": "proposed",
+          "schedule": [
+            {
+              "job_id": "dishwasher",
+              "name": "Optional dishwasher",
+              "start": "18:00",
+              "end": "19:30",
+              "watts": 1400,
+              "duration_minutes": 90
+            },
+            {
+              "job_id": "dryer",
+              "name": "Optional dryer",
+              "start": "18:00",
+              "end": "19:00",
+              "watts": 2200,
+              "duration_minutes": 60
+            },
+            {
+              "job_id": "ebike",
+              "name": "Optional e-bike charger",
+              "start": "22:00",
+              "end": "24:00",
+              "watts": 300,
+              "duration_minutes": 120
+            }
+          ],
+          "metrics": {
+            "peak_watts": 4450,
+            "load_watts": [
+              4250,
+              4450,
+              2500,
+              1250,
+              1100,
+              850,
+              650,
+              550,
+              750,
+              700,
+              650,
+              650
+            ],
+            "energy_kwh": 9.175,
+            "carbon_g": 3492.5,
+            "cost_dollars": 2.67975,
+            "objective": [
+              4450,
+              6985000,
+              535950000
+            ],
+            "within_capacity": true
+          },
+          "baseline_metrics": {
+            "peak_watts": 4750,
+            "load_watts": [
+              4550,
+              4750,
+              2800,
+              1550,
+              1100,
+              850,
+              650,
+              550,
+              450,
+              400,
+              350,
+              350
+            ],
+            "energy_kwh": 9.175,
+            "carbon_g": 3591.5,
+            "cost_dollars": 2.78475,
+            "objective": [
+              4750,
+              7183000,
+              556950000
+            ],
+            "within_capacity": true
+          },
+          "savings": {
+            "peak_watts": 300,
+            "cost_dollars": 0.105
+          },
+          "optimality_proven": true,
+          "solver_status": "optimal",
+          "solver_nodes": 18,
+          "input_sha256": "66c90b5d5a58f9bd3b70fb0dfcb39b4a6a810a130ec748c576da01237e83a4bf",
+          "explanation": "Schedule preserves energy for the included jobs; peak is optimized first, then modeled carbon, then tariff. Skipped jobs are omitted, not treated as efficiency savings.",
+          "revision": 19,
+          "created_at": "2026-09-08T13:15:02.908504+00:00",
+          "execution": {
+            "provider": "ollama",
+            "evidence_type": "real-model-inference",
+            "model_id": "qwen2.5:14b",
+            "model_digest": "7cdf5a0187d5c58cc5d369b255592f7841d1c4696d45a8c8a9489440385b22f6",
+            "sdk_version": "1.54.0",
+            "model_thinking": false,
+            "started_at": "2026-09-08T13:14:58.431826+00:00",
+            "completed_at": "2026-09-08T13:15:02.907447+00:00",
+            "elapsed_seconds": 4.469,
+            "limits": {
+              "turns": 5,
+              "output_tokens": 5000,
+              "total_tokens": 18000
+            },
+            "stop_reason": "end_turn",
+            "tool_events": [
+              {
+                "tool": "read_household",
+                "args": {},
+                "result": {
+                  "constraints": {
+                    "jobs": {
+                      "dishwasher": {
+                        "earliest": "18:00",
+                        "latest_finish": "24:00",
+                        "skip": false
+                      },
+                      "dryer": {
+                        "earliest": "18:00",
+                        "latest_finish": "24:00",
+                        "skip": false
+                      },
+                      "ebike": {
+                        "earliest": "18:00",
+                        "latest_finish": "24:00",
+                        "skip": false
+                      }
+                    },
+                    "quiet_after": "21:00"
+                  },
+                  "revision": 18,
+                  "name": "Watt If fictional home",
+                  "date": "2026-10-01",
+                  "start": "18:00",
+                  "end": "24:00",
+                  "slot_minutes": 30,
+                  "jobs": [
+                    {
+                      "id": "dryer",
+                      "name": "Optional dryer",
+                      "watts": 2200,
+                      "duration_minutes": 60,
+                      "noisy": true,
+                      "deferrable": true
+                    },
+                    {
+                      "id": "dishwasher",
+                      "name": "Optional dishwasher",
+                      "watts": 1400,
+                      "duration_minutes": 90,
+                      "noisy": true,
+                      "deferrable": true
+                    },
+                    {
+                      "id": "ebike",
+                      "name": "Optional e-bike charger",
+                      "watts": 300,
+                      "duration_minutes": 120,
+                      "noisy": false,
+                      "deferrable": true
+                    }
+                  ],
+                  "warning": "Fictional Alexa+ experience simulation. Synthetic loads and tariffs. Advisory calendar only; no device control or measured savings.",
+                  "default_constraints": {
+                    "quiet_after": "21:00",
+                    "jobs": {
+                      "dryer": {
+                        "earliest": "18:00",
+                        "latest_finish": "24:00",
+                        "skip": false
+                      },
+                      "dishwasher": {
+                        "earliest": "18:00",
+                        "latest_finish": "24:00",
+                        "skip": false
+                      },
+                      "ebike": {
+                        "earliest": "18:00",
+                        "latest_finish": "24:00",
+                        "skip": false
+                      }
+                    }
+                  }
+                },
+                "elapsed_ms": 0,
+                "initiated_by": "proposal_dependency"
+              },
+              {
+                "tool": "propose_evening",
+                "args": {
+                  "changes": [
+                    {
+                      "job_id": "household",
+                      "field": "quiet_after",
+                      "value": "20:00",
+                      "clause_id": 1
+                    }
+                  ]
+                },
+                "resolved_changes": [
+                  {
+                    "job_id": "household",
+                    "field": "quiet_after",
+                    "value": "20:00",
+                    "evidence": "Keep quiet after 8 pm"
+                  }
+                ],
+                "validated_patch": {
+                  "quiet_after": "20:00"
+                },
+                "result": {
+                  "status": "proposed",
+                  "constraints": {
+                    "quiet_after": "20:00",
+                    "jobs": {
+                      "dryer": {
+                        "earliest": "18:00",
+                        "latest_finish": "24:00",
+                        "skip": false
+                      },
+                      "dishwasher": {
+                        "earliest": "18:00",
+                        "latest_finish": "24:00",
+                        "skip": false
+                      },
+                      "ebike": {
+                        "earliest": "18:00",
+                        "latest_finish": "24:00",
+                        "skip": false
+                      }
+                    }
+                  },
+                  "schedule": [
+                    {
+                      "job_id": "dishwasher",
+                      "name": "Optional dishwasher",
+                      "start": "18:00",
+                      "end": "19:30",
+                      "watts": 1400,
+                      "duration_minutes": 90
+                    },
+                    {
+                      "job_id": "dryer",
+                      "name": "Optional dryer",
+                      "start": "18:00",
+                      "end": "19:00",
+                      "watts": 2200,
+                      "duration_minutes": 60
+                    },
+                    {
+                      "job_id": "ebike",
+                      "name": "Optional e-bike charger",
+                      "start": "22:00",
+                      "end": "24:00",
+                      "watts": 300,
+                      "duration_minutes": 120
+                    }
+                  ],
+                  "metrics": {
+                    "peak_watts": 4450,
+                    "load_watts": [
+                      4250,
+                      4450,
+                      2500,
+                      1250,
+                      1100,
+                      850,
+                      650,
+                      550,
+                      750,
+                      700,
+                      650,
+                      650
+                    ],
+                    "energy_kwh": 9.175,
+                    "carbon_g": 3492.5,
+                    "cost_dollars": 2.67975,
+                    "objective": [
+                      4450,
+                      6985000,
+                      535950000
+                    ],
+                    "within_capacity": true
+                  },
+                  "baseline_metrics": {
+                    "peak_watts": 4750,
+                    "load_watts": [
+                      4550,
+                      4750,
+                      2800,
+                      1550,
+                      1100,
+                      850,
+                      650,
+                      550,
+                      450,
+                      400,
+                      350,
+                      350
+                    ],
+                    "energy_kwh": 9.175,
+                    "carbon_g": 3591.5,
+                    "cost_dollars": 2.78475,
+                    "objective": [
+                      4750,
+                      7183000,
+                      556950000
+                    ],
+                    "within_capacity": true
+                  },
+                  "explanation": "Schedule preserves energy for the included jobs; peak is optimized first, then modeled carbon, then tariff. Skipped jobs are omitted, not treated as efficiency savings.",
+                  "approval_required": true,
+                  "advisory_only": true
+                },
+                "elapsed_ms": 0
+              }
+            ],
+            "sdk_tool_events": [
+              {
+                "type": "tool_use",
+                "tool": "propose_evening",
+                "tool_use_id": "tooluse_21a116caa4304db1a74d536c",
+                "args": {
+                  "changes": [
+                    {
+                      "clause_id": 1,
+                      "field": "quiet_after",
+                      "job_id": "household",
+                      "value": "20:00"
+                    }
+                  ]
+                }
+              },
+              {
+                "type": "tool_result",
+                "tool_use_id": "tooluse_21a116caa4304db1a74d536c",
+                "status": "success",
+                "content": [
+                  {
+                    "text": "{\"status\": \"proposed\", \"constraints\": {\"quiet_after\": \"20:00\", \"jobs\": {\"dryer\": {\"earliest\": \"18:00\", \"latest_finish\": \"24:00\", \"skip\": false}, \"dishwasher\": {\"earliest\": \"18:00\", \"latest_finish\": \"24:00\", \"skip\": false}, \"ebike\": {\"earliest\": \"18:00\", \"latest_finish\": \"24:00\", \"skip\": false}}}, \"schedule\": [{\"job_id\": \"dishwasher\", \"name\": \"Optional dishwasher\", \"start\": \"18:00\", \"end\": \"19:30\", \"watts\": 1400, \"duration_minutes\": 90}, {\"job_id\": \"dryer\", \"name\": \"Optional dryer\", \"start\": \"18:00\", \"end\": \"19:00\", \"watts\": 2200, \"duration_minutes\": 60}, {\"job_id\": \"ebike\", \"name\": \"Optional e-bike charger\", \"start\": \"22:00\", \"end\": \"24:00\", \"watts\": 300, \"duration_minutes\": 120}], \"metrics\": {\"peak_watts\": 4450, \"load_watts\": [4250, 4450, 2500, 1250, 1100, 850, 650, 550, 750, 700, 650, 650], \"energy_kwh\": 9.175, \"carbon_g\": 3492.5, \"cost_dollars\": 2.67975, \"objective\": [4450, 6985000, 535950000], \"within_capacity\": true}, \"baseline_metrics\": {\"peak_watts\": 4750, \"load_watts\": [4550, 4750, 2800, 1550, 1100, 850, 650, 550, 450, 400, 350, 350], \"energy_kwh\": 9.175, \"carbon_g\": 3591.5, \"cost_dollars\": 2.78475, \"objective\": [4750, 7183000, 556950000], \"within_capacity\": true}, \"explanation\": \"Schedule preserves energy for the included jobs; peak is optimized first, then modeled carbon, then tariff. Skipped jobs are omitted, not treated as efficiency savings.\", \"approval_required\": true, \"advisory_only\": true}"
+                  }
+                ]
+              }
+            ],
+            "read_count": 1,
+            "proposal_attempt_count": 1,
+            "validated_preview": true,
+            "source_clauses": [
+              {
+                "clause_id": 1,
+                "text": "Keep quiet after 8 pm"
+              }
+            ],
+            "grounding_method": "server_resolved_clause_ids",
+            "usage": {
+              "inputTokens": 3087,
+              "outputTokens": 139,
+              "totalTokens": 3226
+            },
+            "source_sha256": {
+              "planner.py": "01c594828a0068893a1808ebc21e6202cbcafe23f1b828f17695481a4b35a8ed",
+              "household.py": "5940e3c3150cd6ebd8a49147d0b5fc7625468a9e6795b5ec7922d4aa341240be",
+              "agent.py": "4c7dff095552793e242cff023e50c461dba0fbd4f347c00dfc1274f8f0d3a46a",
+              "app.py": "bd63a737b75d5720d2aa3e9bbe735e8a36db4199a51ff2e75efb3579fed0f7fa",
+              "requirements.txt": "cc438cf88efdda83e0b8600679f430293c71fd1fa0cfa3ca528e7dbb97cbb3f0"
+            },
+            "household_revision": 18,
+            "message_sha256": "170422dc2b4f5522b53fa3ec0d33f4a904906c3601e2f449239e798d13bc4610",
+            "approval_performed": false,
+            "status": "completed",
+            "reply_source": "validated_proposal_template",
+            "model_response_sha256": "c22936c9cd40ff0c46ad3f526b4626a87ff2eca05740fb6ded2feb145aa13536"
+          },
+          "sha256": "ed88b0e513c1e6b9f5032706850296d72f7ad4cd8736a782e4369333b0fcaec7",
+          "id": "ed88b0e513c1e6b9f5032706"
+        },
+        "trace": {
+          "provider": "ollama",
+          "evidence_type": "real-model-inference",
+          "model_id": "qwen2.5:14b",
+          "model_digest": "7cdf5a0187d5c58cc5d369b255592f7841d1c4696d45a8c8a9489440385b22f6",
+          "sdk_version": "1.54.0",
+          "model_thinking": false,
+          "started_at": "2026-09-08T13:14:58.431826+00:00",
+          "completed_at": "2026-09-08T13:15:02.907447+00:00",
+          "elapsed_seconds": 4.469,
+          "limits": {
+            "turns": 5,
+            "output_tokens": 5000,
+            "total_tokens": 18000
+          },
+          "stop_reason": "end_turn",
+          "tool_events": [
+            {
+              "tool": "read_household",
+              "args": {},
+              "result": {
+                "constraints": {
+                  "jobs": {
+                    "dishwasher": {
+                      "earliest": "18:00",
+                      "latest_finish": "24:00",
+                      "skip": false
+                    },
+                    "dryer": {
+                      "earliest": "18:00",
+                      "latest_finish": "24:00",
+                      "skip": false
+                    },
+                    "ebike": {
+                      "earliest": "18:00",
+                      "latest_finish": "24:00",
+                      "skip": false
+                    }
+                  },
+                  "quiet_after": "21:00"
+                },
+                "revision": 18,
+                "name": "Watt If fictional home",
+                "date": "2026-10-01",
+                "start": "18:00",
+                "end": "24:00",
+                "slot_minutes": 30,
+                "jobs": [
+                  {
+                    "id": "dryer",
+                    "name": "Optional dryer",
+                    "watts": 2200,
+                    "duration_minutes": 60,
+                    "noisy": true,
+                    "deferrable": true
+                  },
+                  {
+                    "id": "dishwasher",
+                    "name": "Optional dishwasher",
+                    "watts": 1400,
+                    "duration_minutes": 90,
+                    "noisy": true,
+                    "deferrable": true
+                  },
+                  {
+                    "id": "ebike",
+                    "name": "Optional e-bike charger",
+                    "watts": 300,
+                    "duration_minutes": 120,
+                    "noisy": false,
+                    "deferrable": true
+                  }
+                ],
+                "warning": "Fictional Alexa+ experience simulation. Synthetic loads and tariffs. Advisory calendar only; no device control or measured savings.",
+                "default_constraints": {
+                  "quiet_after": "21:00",
+                  "jobs": {
+                    "dryer": {
+                      "earliest": "18:00",
+                      "latest_finish": "24:00",
+                      "skip": false
+                    },
+                    "dishwasher": {
+                      "earliest": "18:00",
+                      "latest_finish": "24:00",
+                      "skip": false
+                    },
+                    "ebike": {
+                      "earliest": "18:00",
+                      "latest_finish": "24:00",
+                      "skip": false
+                    }
+                  }
+                }
+              },
+              "elapsed_ms": 0,
+              "initiated_by": "proposal_dependency"
+            },
+            {
+              "tool": "propose_evening",
+              "args": {
+                "changes": [
+                  {
+                    "job_id": "household",
+                    "field": "quiet_after",
+                    "value": "20:00",
+                    "clause_id": 1
+                  }
+                ]
+              },
+              "resolved_changes": [
+                {
+                  "job_id": "household",
+                  "field": "quiet_after",
+                  "value": "20:00",
+                  "evidence": "Keep quiet after 8 pm"
+                }
+              ],
+              "validated_patch": {
+                "quiet_after": "20:00"
+              },
+              "result": {
+                "status": "proposed",
+                "constraints": {
+                  "quiet_after": "20:00",
+                  "jobs": {
+                    "dryer": {
+                      "earliest": "18:00",
+                      "latest_finish": "24:00",
+                      "skip": false
+                    },
+                    "dishwasher": {
+                      "earliest": "18:00",
+                      "latest_finish": "24:00",
+                      "skip": false
+                    },
+                    "ebike": {
+                      "earliest": "18:00",
+                      "latest_finish": "24:00",
+                      "skip": false
+                    }
+                  }
+                },
+                "schedule": [
+                  {
+                    "job_id": "dishwasher",
+                    "name": "Optional dishwasher",
+                    "start": "18:00",
+                    "end": "19:30",
+                    "watts": 1400,
+                    "duration_minutes": 90
+                  },
+                  {
+                    "job_id": "dryer",
+                    "name": "Optional dryer",
+                    "start": "18:00",
+                    "end": "19:00",
+                    "watts": 2200,
+                    "duration_minutes": 60
+                  },
+                  {
+                    "job_id": "ebike",
+                    "name": "Optional e-bike charger",
+                    "start": "22:00",
+                    "end": "24:00",
+                    "watts": 300,
+                    "duration_minutes": 120
+                  }
+                ],
+                "metrics": {
+                  "peak_watts": 4450,
+                  "load_watts": [
+                    4250,
+                    4450,
+                    2500,
+                    1250,
+                    1100,
+                    850,
+                    650,
+                    550,
+                    750,
+                    700,
+                    650,
+                    650
+                  ],
+                  "energy_kwh": 9.175,
+                  "carbon_g": 3492.5,
+                  "cost_dollars": 2.67975,
+                  "objective": [
+                    4450,
+                    6985000,
+                    535950000
+                  ],
+                  "within_capacity": true
+                },
+                "baseline_metrics": {
+                  "peak_watts": 4750,
+                  "load_watts": [
+                    4550,
+                    4750,
+                    2800,
+                    1550,
+                    1100,
+                    850,
+                    650,
+                    550,
+                    450,
+                    400,
+                    350,
+                    350
+                  ],
+                  "energy_kwh": 9.175,
+                  "carbon_g": 3591.5,
+                  "cost_dollars": 2.78475,
+                  "objective": [
+                    4750,
+                    7183000,
+                    556950000
+                  ],
+                  "within_capacity": true
+                },
+                "explanation": "Schedule preserves energy for the included jobs; peak is optimized first, then modeled carbon, then tariff. Skipped jobs are omitted, not treated as efficiency savings.",
+                "approval_required": true,
+                "advisory_only": true
+              },
+              "elapsed_ms": 0
+            }
+          ],
+          "sdk_tool_events": [
+            {
+              "type": "tool_use",
+              "tool": "propose_evening",
+              "tool_use_id": "tooluse_21a116caa4304db1a74d536c",
+              "args": {
+                "changes": [
+                  {
+                    "clause_id": 1,
+                    "field": "quiet_after",
+                    "job_id": "household",
+                    "value": "20:00"
+                  }
+                ]
+              }
+            },
+            {
+              "type": "tool_result",
+              "tool_use_id": "tooluse_21a116caa4304db1a74d536c",
+              "status": "success",
+              "content": [
+                {
+                  "text": "{\"status\": \"proposed\", \"constraints\": {\"quiet_after\": \"20:00\", \"jobs\": {\"dryer\": {\"earliest\": \"18:00\", \"latest_finish\": \"24:00\", \"skip\": false}, \"dishwasher\": {\"earliest\": \"18:00\", \"latest_finish\": \"24:00\", \"skip\": false}, \"ebike\": {\"earliest\": \"18:00\", \"latest_finish\": \"24:00\", \"skip\": false}}}, \"schedule\": [{\"job_id\": \"dishwasher\", \"name\": \"Optional dishwasher\", \"start\": \"18:00\", \"end\": \"19:30\", \"watts\": 1400, \"duration_minutes\": 90}, {\"job_id\": \"dryer\", \"name\": \"Optional dryer\", \"start\": \"18:00\", \"end\": \"19:00\", \"watts\": 2200, \"duration_minutes\": 60}, {\"job_id\": \"ebike\", \"name\": \"Optional e-bike charger\", \"start\": \"22:00\", \"end\": \"24:00\", \"watts\": 300, \"duration_minutes\": 120}], \"metrics\": {\"peak_watts\": 4450, \"load_watts\": [4250, 4450, 2500, 1250, 1100, 850, 650, 550, 750, 700, 650, 650], \"energy_kwh\": 9.175, \"carbon_g\": 3492.5, \"cost_dollars\": 2.67975, \"objective\": [4450, 6985000, 535950000], \"within_capacity\": true}, \"baseline_metrics\": {\"peak_watts\": 4750, \"load_watts\": [4550, 4750, 2800, 1550, 1100, 850, 650, 550, 450, 400, 350, 350], \"energy_kwh\": 9.175, \"carbon_g\": 3591.5, \"cost_dollars\": 2.78475, \"objective\": [4750, 7183000, 556950000], \"within_capacity\": true}, \"explanation\": \"Schedule preserves energy for the included jobs; peak is optimized first, then modeled carbon, then tariff. Skipped jobs are omitted, not treated as efficiency savings.\", \"approval_required\": true, \"advisory_only\": true}"
+                }
+              ]
+            }
+          ],
+          "read_count": 1,
+          "proposal_attempt_count": 1,
+          "validated_preview": true,
+          "source_clauses": [
+            {
+              "clause_id": 1,
+              "text": "Keep quiet after 8 pm"
+            }
+          ],
+          "grounding_method": "server_resolved_clause_ids",
+          "usage": {
+            "inputTokens": 3087,
+            "outputTokens": 139,
+            "totalTokens": 3226
+          },
+          "source_sha256": {
+            "planner.py": "01c594828a0068893a1808ebc21e6202cbcafe23f1b828f17695481a4b35a8ed",
+            "household.py": "5940e3c3150cd6ebd8a49147d0b5fc7625468a9e6795b5ec7922d4aa341240be",
+            "agent.py": "4c7dff095552793e242cff023e50c461dba0fbd4f347c00dfc1274f8f0d3a46a",
+            "app.py": "bd63a737b75d5720d2aa3e9bbe735e8a36db4199a51ff2e75efb3579fed0f7fa",
+            "requirements.txt": "cc438cf88efdda83e0b8600679f430293c71fd1fa0cfa3ca528e7dbb97cbb3f0"
+          },
+          "household_revision": 18,
+          "message_sha256": "170422dc2b4f5522b53fa3ec0d33f4a904906c3601e2f449239e798d13bc4610",
+          "approval_performed": false,
+          "status": "completed",
+          "reply_source": "validated_proposal_template",
+          "model_response_sha256": "c22936c9cd40ff0c46ad3f526b4626a87ff2eca05740fb6ded2feb145aa13536"
+        }
+      }
+    },
+    {
+      "name": "deadline",
+      "message": "Have the ebike ready by 10 pm.",
+      "data": {
+        "reply": "Proposed fictional evening schedule: Optional dryer: 18:00\u201319:00; Optional dishwasher: 19:30\u201321:00; Optional e-bike charger: 20:00\u201322:00. Review the exact times, then approve the advisory calendar.",
+        "reply_source": "validated_proposal_template",
+        "proposal": {
+          "constraints": {
+            "quiet_after": "21:00",
+            "jobs": {
+              "dryer": {
+                "earliest": "18:00",
+                "latest_finish": "24:00",
+                "skip": false
+              },
+              "dishwasher": {
+                "earliest": "18:00",
+                "latest_finish": "24:00",
+                "skip": false
+              },
+              "ebike": {
+                "earliest": "18:00",
+                "latest_finish": "22:00",
+                "skip": false
+              }
+            }
+          },
+          "skipped": [],
+          "warning": "Fictional Alexa+ experience simulation. Synthetic loads and tariffs. Advisory calendar only; no device control or measured savings.",
+          "skipped_job_energy_kwh": 0,
+          "status": "proposed",
+          "schedule": [
+            {
+              "job_id": "dryer",
+              "name": "Optional dryer",
+              "start": "18:00",
+              "end": "19:00",
+              "watts": 2200,
+              "duration_minutes": 60
+            },
+            {
+              "job_id": "dishwasher",
+              "name": "Optional dishwasher",
+              "start": "19:30",
+              "end": "21:00",
+              "watts": 1400,
+              "duration_minutes": 90
+            },
+            {
+              "job_id": "ebike",
+              "name": "Optional e-bike charger",
+              "start": "20:00",
+              "end": "22:00",
+              "watts": 300,
+              "duration_minutes": 120
+            }
+          ],
+          "metrics": {
+            "peak_watts": 3050,
+            "load_watts": [
+              2850,
+              3050,
+              1100,
+              2650,
+              2800,
+              2550,
+              950,
+              850,
+              450,
+              400,
+              350,
+              350
+            ],
+            "energy_kwh": 9.175,
+            "carbon_g": 3459.5,
+            "cost_dollars": 2.69175,
+            "objective": [
+              3050,
+              6919000,
+              538350000
+            ],
+            "within_capacity": true
+          },
+          "baseline_metrics": {
+            "peak_watts": 4750,
+            "load_watts": [
+              4550,
+              4750,
+              2800,
+              1550,
+              1100,
+              850,
+              650,
+              550,
+              450,
+              400,
+              350,
+              350
+            ],
+            "energy_kwh": 9.175,
+            "carbon_g": 3591.5,
+            "cost_dollars": 2.78475,
+            "objective": [
+              4750,
+              7183000,
+              556950000
+            ],
+            "within_capacity": true
+          },
+          "savings": {
+            "peak_watts": 1700,
+            "cost_dollars": 0.093
+          },
+          "optimality_proven": true,
+          "solver_status": "optimal",
+          "solver_nodes": 35,
+          "input_sha256": "a9dc6fddb7e88abddfe3754bbb5275b6ac3e01100f9aa1e187d2d4e99126b89e",
+          "explanation": "Schedule preserves energy for the included jobs; peak is optimized first, then modeled carbon, then tariff. Skipped jobs are omitted, not treated as efficiency savings.",
+          "revision": 21,
+          "created_at": "2026-09-08T13:15:06.542627+00:00",
+          "execution": {
+            "provider": "ollama",
+            "evidence_type": "real-model-inference",
+            "model_id": "qwen2.5:14b",
+            "model_digest": "7cdf5a0187d5c58cc5d369b255592f7841d1c4696d45a8c8a9489440385b22f6",
+            "sdk_version": "1.54.0",
+            "model_thinking": false,
+            "started_at": "2026-09-08T13:15:02.959845+00:00",
+            "completed_at": "2026-09-08T13:15:06.541574+00:00",
+            "elapsed_seconds": 3.594,
+            "limits": {
+              "turns": 5,
+              "output_tokens": 5000,
+              "total_tokens": 18000
+            },
+            "stop_reason": "end_turn",
+            "tool_events": [
+              {
+                "tool": "read_household",
+                "args": {},
+                "result": {
+                  "constraints": {
+                    "jobs": {
+                      "dishwasher": {
+                        "earliest": "18:00",
+                        "latest_finish": "24:00",
+                        "skip": false
+                      },
+                      "dryer": {
+                        "earliest": "18:00",
+                        "latest_finish": "24:00",
+                        "skip": false
+                      },
+                      "ebike": {
+                        "earliest": "18:00",
+                        "latest_finish": "24:00",
+                        "skip": false
+                      }
+                    },
+                    "quiet_after": "21:00"
+                  },
+                  "revision": 20,
+                  "name": "Watt If fictional home",
+                  "date": "2026-10-01",
+                  "start": "18:00",
+                  "end": "24:00",
+                  "slot_minutes": 30,
+                  "jobs": [
+                    {
+                      "id": "dryer",
+                      "name": "Optional dryer",
+                      "watts": 2200,
+                      "duration_minutes": 60,
+                      "noisy": true,
+                      "deferrable": true
+                    },
+                    {
+                      "id": "dishwasher",
+                      "name": "Optional dishwasher",
+                      "watts": 1400,
+                      "duration_minutes": 90,
+                      "noisy": true,
+                      "deferrable": true
+                    },
+                    {
+                      "id": "ebike",
+                      "name": "Optional e-bike charger",
+                      "watts": 300,
+                      "duration_minutes": 120,
+                      "noisy": false,
+                      "deferrable": true
+                    }
+                  ],
+                  "warning": "Fictional Alexa+ experience simulation. Synthetic loads and tariffs. Advisory calendar only; no device control or measured savings.",
+                  "default_constraints": {
+                    "quiet_after": "21:00",
+                    "jobs": {
+                      "dryer": {
+                        "earliest": "18:00",
+                        "latest_finish": "24:00",
+                        "skip": false
+                      },
+                      "dishwasher": {
+                        "earliest": "18:00",
+                        "latest_finish": "24:00",
+                        "skip": false
+                      },
+                      "ebike": {
+                        "earliest": "18:00",
+                        "latest_finish": "24:00",
+                        "skip": false
+                      }
+                    }
+                  }
+                },
+                "elapsed_ms": 0,
+                "initiated_by": "proposal_dependency"
+              },
+              {
+                "tool": "propose_evening",
+                "args": {
+                  "changes": [
+                    {
+                      "job_id": "ebike",
+                      "field": "latest_finish",
+                      "value": "22:00",
+                      "clause_id": 1
+                    }
+                  ]
+                },
+                "resolved_changes": [
+                  {
+                    "job_id": "ebike",
+                    "field": "latest_finish",
+                    "value": "22:00",
+                    "evidence": "Have the ebike ready by 10 pm"
+                  }
+                ],
+                "validated_patch": {
+                  "jobs": {
+                    "ebike": {
+                      "latest_finish": "22:00"
+                    }
+                  }
+                },
+                "result": {
+                  "status": "proposed",
+                  "constraints": {
+                    "quiet_after": "21:00",
+                    "jobs": {
+                      "dryer": {
+                        "earliest": "18:00",
+                        "latest_finish": "24:00",
+                        "skip": false
+                      },
+                      "dishwasher": {
+                        "earliest": "18:00",
+                        "latest_finish": "24:00",
+                        "skip": false
+                      },
+                      "ebike": {
+                        "earliest": "18:00",
+                        "latest_finish": "22:00",
+                        "skip": false
+                      }
+                    }
+                  },
+                  "schedule": [
+                    {
+                      "job_id": "dryer",
+                      "name": "Optional dryer",
+                      "start": "18:00",
+                      "end": "19:00",
+                      "watts": 2200,
+                      "duration_minutes": 60
+                    },
+                    {
+                      "job_id": "dishwasher",
+                      "name": "Optional dishwasher",
+                      "start": "19:30",
+                      "end": "21:00",
+                      "watts": 1400,
+                      "duration_minutes": 90
+                    },
+                    {
+                      "job_id": "ebike",
+                      "name": "Optional e-bike charger",
+                      "start": "20:00",
+                      "end": "22:00",
+                      "watts": 300,
+                      "duration_minutes": 120
+                    }
+                  ],
+                  "metrics": {
+                    "peak_watts": 3050,
+                    "load_watts": [
+                      2850,
+                      3050,
+                      1100,
+                      2650,
+                      2800,
+                      2550,
+                      950,
+                      850,
+                      450,
+                      400,
+                      350,
+                      350
+                    ],
+                    "energy_kwh": 9.175,
+                    "carbon_g": 3459.5,
+                    "cost_dollars": 2.69175,
+                    "objective": [
+                      3050,
+                      6919000,
+                      538350000
+                    ],
+                    "within_capacity": true
+                  },
+                  "baseline_metrics": {
+                    "peak_watts": 4750,
+                    "load_watts": [
+                      4550,
+                      4750,
+                      2800,
+                      1550,
+                      1100,
+                      850,
+                      650,
+                      550,
+                      450,
+                      400,
+                      350,
+                      350
+                    ],
+                    "energy_kwh": 9.175,
+                    "carbon_g": 3591.5,
+                    "cost_dollars": 2.78475,
+                    "objective": [
+                      4750,
+                      7183000,
+                      556950000
+                    ],
+                    "within_capacity": true
+                  },
+                  "explanation": "Schedule preserves energy for the included jobs; peak is optimized first, then modeled carbon, then tariff. Skipped jobs are omitted, not treated as efficiency savings.",
+                  "approval_required": true,
+                  "advisory_only": true
+                },
+                "elapsed_ms": 0
+              }
+            ],
+            "sdk_tool_events": [
+              {
+                "type": "tool_use",
+                "tool": "propose_evening",
+                "tool_use_id": "tooluse_cf2512e3b42343bc88fa16fb",
+                "args": {
+                  "changes": [
+                    {
+                      "clause_id": 1,
+                      "field": "latest_finish",
+                      "job_id": "ebike",
+                      "value": "22:00"
+                    }
+                  ]
+                }
+              },
+              {
+                "type": "tool_result",
+                "tool_use_id": "tooluse_cf2512e3b42343bc88fa16fb",
+                "status": "success",
+                "content": [
+                  {
+                    "text": "{\"status\": \"proposed\", \"constraints\": {\"quiet_after\": \"21:00\", \"jobs\": {\"dryer\": {\"earliest\": \"18:00\", \"latest_finish\": \"24:00\", \"skip\": false}, \"dishwasher\": {\"earliest\": \"18:00\", \"latest_finish\": \"24:00\", \"skip\": false}, \"ebike\": {\"earliest\": \"18:00\", \"latest_finish\": \"22:00\", \"skip\": false}}}, \"schedule\": [{\"job_id\": \"dryer\", \"name\": \"Optional dryer\", \"start\": \"18:00\", \"end\": \"19:00\", \"watts\": 2200, \"duration_minutes\": 60}, {\"job_id\": \"dishwasher\", \"name\": \"Optional dishwasher\", \"start\": \"19:30\", \"end\": \"21:00\", \"watts\": 1400, \"duration_minutes\": 90}, {\"job_id\": \"ebike\", \"name\": \"Optional e-bike charger\", \"start\": \"20:00\", \"end\": \"22:00\", \"watts\": 300, \"duration_minutes\": 120}], \"metrics\": {\"peak_watts\": 3050, \"load_watts\": [2850, 3050, 1100, 2650, 2800, 2550, 950, 850, 450, 400, 350, 350], \"energy_kwh\": 9.175, \"carbon_g\": 3459.5, \"cost_dollars\": 2.69175, \"objective\": [3050, 6919000, 538350000], \"within_capacity\": true}, \"baseline_metrics\": {\"peak_watts\": 4750, \"load_watts\": [4550, 4750, 2800, 1550, 1100, 850, 650, 550, 450, 400, 350, 350], \"energy_kwh\": 9.175, \"carbon_g\": 3591.5, \"cost_dollars\": 2.78475, \"objective\": [4750, 7183000, 556950000], \"within_capacity\": true}, \"explanation\": \"Schedule preserves energy for the included jobs; peak is optimized first, then modeled carbon, then tariff. Skipped jobs are omitted, not treated as efficiency savings.\", \"approval_required\": true, \"advisory_only\": true}"
+                  }
+                ]
+              }
+            ],
+            "read_count": 1,
+            "proposal_attempt_count": 1,
+            "validated_preview": true,
+            "source_clauses": [
+              {
+                "clause_id": 1,
+                "text": "Have the ebike ready by 10 pm"
+              }
+            ],
+            "grounding_method": "server_resolved_clause_ids",
+            "usage": {
+              "inputTokens": 3104,
+              "outputTokens": 109,
+              "totalTokens": 3213
+            },
+            "source_sha256": {
+              "planner.py": "01c594828a0068893a1808ebc21e6202cbcafe23f1b828f17695481a4b35a8ed",
+              "household.py": "5940e3c3150cd6ebd8a49147d0b5fc7625468a9e6795b5ec7922d4aa341240be",
+              "agent.py": "4c7dff095552793e242cff023e50c461dba0fbd4f347c00dfc1274f8f0d3a46a",
+              "app.py": "bd63a737b75d5720d2aa3e9bbe735e8a36db4199a51ff2e75efb3579fed0f7fa",
+              "requirements.txt": "cc438cf88efdda83e0b8600679f430293c71fd1fa0cfa3ca528e7dbb97cbb3f0"
+            },
+            "household_revision": 20,
+            "message_sha256": "63cd7422eaa62e7a4ff0c4397e5bc6073d9dae67ae34d8114fa642316478439b",
+            "approval_performed": false,
+            "status": "completed",
+            "reply_source": "validated_proposal_template",
+            "model_response_sha256": "4e269ee9348858f6a49dcd3201da4ce253eb748f0992bf43cf1c522079db9157"
+          },
+          "sha256": "0a315095b666eebb86934c310d04eb452f808724e90ec7fb1e3c933da02a19f7",
+          "id": "0a315095b666eebb86934c31"
+        },
+        "trace": {
+          "provider": "ollama",
+          "evidence_type": "real-model-inference",
+          "model_id": "qwen2.5:14b",
+          "model_digest": "7cdf5a0187d5c58cc5d369b255592f7841d1c4696d45a8c8a9489440385b22f6",
+          "sdk_version": "1.54.0",
+          "model_thinking": false,
+          "started_at": "2026-09-08T13:15:02.959845+00:00",
+          "completed_at": "2026-09-08T13:15:06.541574+00:00",
+          "elapsed_seconds": 3.594,
+          "limits": {
+            "turns": 5,
+            "output_tokens": 5000,
+            "total_tokens": 18000
+          },
+          "stop_reason": "end_turn",
+          "tool_events": [
+            {
+              "tool": "read_household",
+              "args": {},
+              "result": {
+                "constraints": {
+                  "jobs": {
+                    "dishwasher": {
+                      "earliest": "18:00",
+                      "latest_finish": "24:00",
+                      "skip": false
+                    },
+                    "dryer": {
+                      "earliest": "18:00",
+                      "latest_finish": "24:00",
+                      "skip": false
+                    },
+                    "ebike": {
+                      "earliest": "18:00",
+                      "latest_finish": "24:00",
+                      "skip": false
+                    }
+                  },
+                  "quiet_after": "21:00"
+                },
+                "revision": 20,
+                "name": "Watt If fictional home",
+                "date": "2026-10-01",
+                "start": "18:00",
+                "end": "24:00",
+                "slot_minutes": 30,
+                "jobs": [
+                  {
+                    "id": "dryer",
+                    "name": "Optional dryer",
+                    "watts": 2200,
+                    "duration_minutes": 60,
+                    "noisy": true,
+                    "deferrable": true
+                  },
+                  {
+                    "id": "dishwasher",
+                    "name": "Optional dishwasher",
+                    "watts": 1400,
+                    "duration_minutes": 90,
+                    "noisy": true,
+                    "deferrable": true
+                  },
+                  {
+                    "id": "ebike",
+                    "name": "Optional e-bike charger",
+                    "watts": 300,
+                    "duration_minutes": 120,
+                    "noisy": false,
+                    "deferrable": true
+                  }
+                ],
+                "warning": "Fictional Alexa+ experience simulation. Synthetic loads and tariffs. Advisory calendar only; no device control or measured savings.",
+                "default_constraints": {
+                  "quiet_after": "21:00",
+                  "jobs": {
+                    "dryer": {
+                      "earliest": "18:00",
+                      "latest_finish": "24:00",
+                      "skip": false
+                    },
+                    "dishwasher": {
+                      "earliest": "18:00",
+                      "latest_finish": "24:00",
+                      "skip": false
+                    },
+                    "ebike": {
+                      "earliest": "18:00",
+                      "latest_finish": "24:00",
+                      "skip": false
+                    }
+                  }
+                }
+              },
+              "elapsed_ms": 0,
+              "initiated_by": "proposal_dependency"
+            },
+            {
+              "tool": "propose_evening",
+              "args": {
+                "changes": [
+                  {
+                    "job_id": "ebike",
+                    "field": "latest_finish",
+                    "value": "22:00",
+                    "clause_id": 1
+                  }
+                ]
+              },
+              "resolved_changes": [
+                {
+                  "job_id": "ebike",
+                  "field": "latest_finish",
+                  "value": "22:00",
+                  "evidence": "Have the ebike ready by 10 pm"
+                }
+              ],
+              "validated_patch": {
+                "jobs": {
+                  "ebike": {
+                    "latest_finish": "22:00"
+                  }
+                }
+              },
+              "result": {
+                "status": "proposed",
+                "constraints": {
+                  "quiet_after": "21:00",
+                  "jobs": {
+                    "dryer": {
+                      "earliest": "18:00",
+                      "latest_finish": "24:00",
+                      "skip": false
+                    },
+                    "dishwasher": {
+                      "earliest": "18:00",
+                      "latest_finish": "24:00",
+                      "skip": false
+                    },
+                    "ebike": {
+                      "earliest": "18:00",
+                      "latest_finish": "22:00",
+                      "skip": false
+                    }
+                  }
+                },
+                "schedule": [
+                  {
+                    "job_id": "dryer",
+                    "name": "Optional dryer",
+                    "start": "18:00",
+                    "end": "19:00",
+                    "watts": 2200,
+                    "duration_minutes": 60
+                  },
+                  {
+                    "job_id": "dishwasher",
+                    "name": "Optional dishwasher",
+                    "start": "19:30",
+                    "end": "21:00",
+                    "watts": 1400,
+                    "duration_minutes": 90
+                  },
+                  {
+                    "job_id": "ebike",
+                    "name": "Optional e-bike charger",
+                    "start": "20:00",
+                    "end": "22:00",
+                    "watts": 300,
+                    "duration_minutes": 120
+                  }
+                ],
+                "metrics": {
+                  "peak_watts": 3050,
+                  "load_watts": [
+                    2850,
+                    3050,
+                    1100,
+                    2650,
+                    2800,
+                    2550,
+                    950,
+                    850,
+                    450,
+                    400,
+                    350,
+                    350
+                  ],
+                  "energy_kwh": 9.175,
+                  "carbon_g": 3459.5,
+                  "cost_dollars": 2.69175,
+                  "objective": [
+                    3050,
+                    6919000,
+                    538350000
+                  ],
+                  "within_capacity": true
+                },
+                "baseline_metrics": {
+                  "peak_watts": 4750,
+                  "load_watts": [
+                    4550,
+                    4750,
+                    2800,
+                    1550,
+                    1100,
+                    850,
+                    650,
+                    550,
+                    450,
+                    400,
+                    350,
+                    350
+                  ],
+                  "energy_kwh": 9.175,
+                  "carbon_g": 3591.5,
+                  "cost_dollars": 2.78475,
+                  "objective": [
+                    4750,
+                    7183000,
+                    556950000
+                  ],
+                  "within_capacity": true
+                },
+                "explanation": "Schedule preserves energy for the included jobs; peak is optimized first, then modeled carbon, then tariff. Skipped jobs are omitted, not treated as efficiency savings.",
+                "approval_required": true,
+                "advisory_only": true
+              },
+              "elapsed_ms": 0
+            }
+          ],
+          "sdk_tool_events": [
+            {
+              "type": "tool_use",
+              "tool": "propose_evening",
+              "tool_use_id": "tooluse_cf2512e3b42343bc88fa16fb",
+              "args": {
+                "changes": [
+                  {
+                    "clause_id": 1,
+                    "field": "latest_finish",
+                    "job_id": "ebike",
+                    "value": "22:00"
+                  }
+                ]
+              }
+            },
+            {
+              "type": "tool_result",
+              "tool_use_id": "tooluse_cf2512e3b42343bc88fa16fb",
+              "status": "success",
+              "content": [
+                {
+                  "text": "{\"status\": \"proposed\", \"constraints\": {\"quiet_after\": \"21:00\", \"jobs\": {\"dryer\": {\"earliest\": \"18:00\", \"latest_finish\": \"24:00\", \"skip\": false}, \"dishwasher\": {\"earliest\": \"18:00\", \"latest_finish\": \"24:00\", \"skip\": false}, \"ebike\": {\"earliest\": \"18:00\", \"latest_finish\": \"22:00\", \"skip\": false}}}, \"schedule\": [{\"job_id\": \"dryer\", \"name\": \"Optional dryer\", \"start\": \"18:00\", \"end\": \"19:00\", \"watts\": 2200, \"duration_minutes\": 60}, {\"job_id\": \"dishwasher\", \"name\": \"Optional dishwasher\", \"start\": \"19:30\", \"end\": \"21:00\", \"watts\": 1400, \"duration_minutes\": 90}, {\"job_id\": \"ebike\", \"name\": \"Optional e-bike charger\", \"start\": \"20:00\", \"end\": \"22:00\", \"watts\": 300, \"duration_minutes\": 120}], \"metrics\": {\"peak_watts\": 3050, \"load_watts\": [2850, 3050, 1100, 2650, 2800, 2550, 950, 850, 450, 400, 350, 350], \"energy_kwh\": 9.175, \"carbon_g\": 3459.5, \"cost_dollars\": 2.69175, \"objective\": [3050, 6919000, 538350000], \"within_capacity\": true}, \"baseline_metrics\": {\"peak_watts\": 4750, \"load_watts\": [4550, 4750, 2800, 1550, 1100, 850, 650, 550, 450, 400, 350, 350], \"energy_kwh\": 9.175, \"carbon_g\": 3591.5, \"cost_dollars\": 2.78475, \"objective\": [4750, 7183000, 556950000], \"within_capacity\": true}, \"explanation\": \"Schedule preserves energy for the included jobs; peak is optimized first, then modeled carbon, then tariff. Skipped jobs are omitted, not treated as efficiency savings.\", \"approval_required\": true, \"advisory_only\": true}"
+                }
+              ]
+            }
+          ],
+          "read_count": 1,
+          "proposal_attempt_count": 1,
+          "validated_preview": true,
+          "source_clauses": [
+            {
+              "clause_id": 1,
+              "text": "Have the ebike ready by 10 pm"
+            }
+          ],
+          "grounding_method": "server_resolved_clause_ids",
+          "usage": {
+            "inputTokens": 3104,
+            "outputTokens": 109,
+            "totalTokens": 3213
+          },
+          "source_sha256": {
+            "planner.py": "01c594828a0068893a1808ebc21e6202cbcafe23f1b828f17695481a4b35a8ed",
+            "household.py": "5940e3c3150cd6ebd8a49147d0b5fc7625468a9e6795b5ec7922d4aa341240be",
+            "agent.py": "4c7dff095552793e242cff023e50c461dba0fbd4f347c00dfc1274f8f0d3a46a",
+            "app.py": "bd63a737b75d5720d2aa3e9bbe735e8a36db4199a51ff2e75efb3579fed0f7fa",
+            "requirements.txt": "cc438cf88efdda83e0b8600679f430293c71fd1fa0cfa3ca528e7dbb97cbb3f0"
+          },
+          "household_revision": 20,
+          "message_sha256": "63cd7422eaa62e7a4ff0c4397e5bc6073d9dae67ae34d8114fa642316478439b",
+          "approval_performed": false,
+          "status": "completed",
+          "reply_source": "validated_proposal_template",
+          "model_response_sha256": "4e269ee9348858f6a49dcd3201da4ce253eb748f0992bf43cf1c522079db9157"
+        }
+      }
+    }
+  ],
+  "passed": true,
+  "completed_at": "2026-09-08T13:15:06.552591+00:00"
+}

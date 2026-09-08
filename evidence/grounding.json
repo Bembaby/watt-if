@@ -1,0 +1,246 @@
+{
+  "run_at_utc": "2026-09-08T13:16:52.734829+00:00",
+  "inference_performed": false,
+  "source_sha256": "4c7dff095552793e242cff023e50c461dba0fbd4f347c00dfc1274f8f0d3a46a",
+  "source_after_sha256": "4c7dff095552793e242cff023e50c461dba0fbd4f347c00dfc1274f8f0d3a46a",
+  "cases": [
+    {
+      "name": "negated_finish",
+      "message": "Do not finish the dryer by 8 pm.",
+      "changes": [
+        {
+          "job_id": "dryer",
+          "field": "latest_finish",
+          "value": "20:00",
+          "evidence": "Do not finish the dryer by 8 pm."
+        }
+      ],
+      "expected": "reject",
+      "actual": "reject",
+      "pass_check": true,
+      "patch": null,
+      "error": "Invalid: Negated or conditional scheduling requests need clarification. Use direct positive instructions; explicit not-before windows are supported."
+    },
+    {
+      "name": "negated_start",
+      "message": "Do not start the dryer at 8 pm.",
+      "changes": [
+        {
+          "job_id": "dryer",
+          "field": "earliest",
+          "value": "20:00",
+          "evidence": "Do not start the dryer at 8 pm."
+        }
+      ],
+      "expected": "reject",
+      "actual": "reject",
+      "pass_check": true,
+      "patch": null,
+      "error": "Invalid: Negated or conditional scheduling requests need clarification. Use direct positive instructions; explicit not-before windows are supported."
+    },
+    {
+      "name": "negated_quiet",
+      "message": "Do not keep quiet after 8 pm.",
+      "changes": [
+        {
+          "job_id": "household",
+          "field": "quiet_after",
+          "value": "20:00",
+          "evidence": "Do not keep quiet after 8 pm."
+        }
+      ],
+      "expected": "reject",
+      "actual": "reject",
+      "pass_check": true,
+      "patch": null,
+      "error": "Invalid: Negated or conditional scheduling requests need clarification. Use direct positive instructions; explicit not-before windows are supported."
+    },
+    {
+      "name": "cropped_negated_skip",
+      "message": "Do not skip the dryer.",
+      "changes": [
+        {
+          "job_id": "dryer",
+          "field": "skip",
+          "value": "true",
+          "evidence": "skip the dryer."
+        }
+      ],
+      "expected": "reject",
+      "actual": "reject",
+      "pass_check": true,
+      "patch": null,
+      "error": "Invalid: Negated or conditional scheduling requests need clarification. Use direct positive instructions; explicit not-before windows are supported."
+    },
+    {
+      "name": "shared_job_omission",
+      "message": "Finish the dryer and dishwasher by 8 pm.",
+      "changes": [
+        {
+          "job_id": "dishwasher",
+          "field": "latest_finish",
+          "value": "20:00",
+          "evidence": "dishwasher by 8 pm."
+        }
+      ],
+      "expected": "reject",
+      "actual": "reject",
+      "pass_check": true,
+      "patch": null,
+      "error": "Invalid: Evidence must quote the complete instruction clause, preserving all job names and intent words."
+    },
+    {
+      "name": "repeated_clock_omission",
+      "message": "Finish the dryer by 8 pm. Finish the dishwasher by 8 pm.",
+      "changes": [
+        {
+          "job_id": "dryer",
+          "field": "latest_finish",
+          "value": "20:00",
+          "evidence": "Finish the dryer by 8 pm."
+        }
+      ],
+      "expected": "reject",
+      "actual": "reject",
+      "pass_check": true,
+      "patch": null,
+      "error": "Invalid: Every requested job in every instruction clause needs its own grounded change. Do not omit a repeated deadline or skip request."
+    },
+    {
+      "name": "omitted_skip_in_mixed_request",
+      "message": "Skip the dryer. Finish the dishwasher by 8 pm.",
+      "changes": [
+        {
+          "job_id": "dishwasher",
+          "field": "latest_finish",
+          "value": "20:00",
+          "evidence": "Finish the dishwasher by 8 pm."
+        }
+      ],
+      "expected": "reject",
+      "actual": "reject",
+      "pass_check": true,
+      "patch": null,
+      "error": "Invalid: Every requested job in every instruction clause needs its own grounded change. Do not omit a repeated deadline or skip request."
+    },
+    {
+      "name": "two_job_negation",
+      "message": "Finish the dryer by 8 pm and do not finish the dishwasher by 8 pm.",
+      "changes": [
+        {
+          "job_id": "dryer",
+          "field": "latest_finish",
+          "value": "20:00",
+          "evidence": "Finish the dryer by 8 pm and do not finish the dishwasher by 8 pm."
+        },
+        {
+          "job_id": "dishwasher",
+          "field": "latest_finish",
+          "value": "20:00",
+          "evidence": "Finish the dryer by 8 pm and do not finish the dishwasher by 8 pm."
+        }
+      ],
+      "expected": "reject",
+      "actual": "reject",
+      "pass_check": true,
+      "patch": null,
+      "error": "Invalid: Negated or conditional scheduling requests need clarification. Use direct positive instructions; explicit not-before windows are supported."
+    },
+    {
+      "name": "conflicting_distinct_times",
+      "message": "Finish the dryer by 8 pm. Finish the dryer by 9 pm.",
+      "changes": [
+        {
+          "job_id": "dryer",
+          "field": "latest_finish",
+          "value": "20:00",
+          "evidence": "Finish the dryer by 8 pm."
+        }
+      ],
+      "expected": "reject",
+      "actual": "reject",
+      "pass_check": true,
+      "patch": null,
+      "error": "Invalid: A clock time in this request is unaddressed. Include every requested time with precise evidence, or ask for clarification."
+    },
+    {
+      "name": "finish_as_earliest",
+      "message": "Have the ebike ready by 10 pm.",
+      "changes": [
+        {
+          "job_id": "ebike",
+          "field": "earliest",
+          "value": "22:00",
+          "evidence": "Have the ebike ready by 10 pm."
+        }
+      ],
+      "expected": "reject",
+      "actual": "reject",
+      "pass_check": true,
+      "patch": null,
+      "error": "Invalid: earliest changes require an explicit start/not-before instruction, never a finish/ready deadline."
+    },
+    {
+      "name": "valid_shared_deadline",
+      "message": "Finish the dryer and dishwasher by 8 pm.",
+      "changes": [
+        {
+          "job_id": "dryer",
+          "field": "latest_finish",
+          "value": "20:00",
+          "evidence": "Finish the dryer and dishwasher by 8 pm."
+        },
+        {
+          "job_id": "dishwasher",
+          "field": "latest_finish",
+          "value": "20:00",
+          "evidence": "Finish the dryer and dishwasher by 8 pm."
+        }
+      ],
+      "expected": "accept",
+      "actual": "accept",
+      "pass_check": true,
+      "patch": {
+        "jobs": {
+          "dryer": {
+            "latest_finish": "20:00"
+          },
+          "dishwasher": {
+            "latest_finish": "20:00"
+          }
+        }
+      },
+      "error": null
+    },
+    {
+      "name": "valid_start_and_finish",
+      "message": "Start the dryer at 7 pm. Finish the dryer by 8 pm.",
+      "changes": [
+        {
+          "job_id": "dryer",
+          "field": "earliest",
+          "value": "19:00",
+          "evidence": "Start the dryer at 7 pm."
+        },
+        {
+          "job_id": "dryer",
+          "field": "latest_finish",
+          "value": "20:00",
+          "evidence": "Finish the dryer by 8 pm."
+        }
+      ],
+      "expected": "accept",
+      "actual": "accept",
+      "pass_check": true,
+      "patch": {
+        "jobs": {
+          "dryer": {
+            "earliest": "19:00",
+            "latest_finish": "20:00"
+          }
+        }
+      },
+      "error": null
+    }
+  ]
+}

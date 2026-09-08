@@ -1,0 +1,144 @@
+{
+  "run_at_utc": "2026-09-08T13:15:05.879400+00:00",
+  "inference_performed": false,
+  "external_services_used": false,
+  "source_before": {
+    "household.py": "5940e3c3150cd6ebd8a49147d0b5fc7625468a9e6795b5ec7922d4aa341240be",
+    "planner.py": "01c594828a0068893a1808ebc21e6202cbcafe23f1b828f17695481a4b35a8ed",
+    "app.py": "bd63a737b75d5720d2aa3e9bbe735e8a36db4199a51ff2e75efb3579fed0f7fa",
+    "agent.py": "4c7dff095552793e242cff023e50c461dba0fbd4f347c00dfc1274f8f0d3a46a",
+    "app.js": "17a06fe3e74f0974b2f9fcbadec5d07a410f9c18f3f61db8733be35fbf80229b"
+  },
+  "source_after": {
+    "household.py": "5940e3c3150cd6ebd8a49147d0b5fc7625468a9e6795b5ec7922d4aa341240be",
+    "planner.py": "01c594828a0068893a1808ebc21e6202cbcafe23f1b828f17695481a4b35a8ed",
+    "app.py": "bd63a737b75d5720d2aa3e9bbe735e8a36db4199a51ff2e75efb3579fed0f7fa",
+    "agent.py": "4c7dff095552793e242cff023e50c461dba0fbd4f347c00dfc1274f8f0d3a46a",
+    "app.js": "17a06fe3e74f0974b2f9fcbadec5d07a410f9c18f3f61db8733be35fbf80229b"
+  },
+  "oracle": {
+    "cases": 3546,
+    "feasible_cases": 653,
+    "enumerated_assignments": 140042,
+    "failures": []
+  },
+  "checks": [
+    {
+      "check": "approval idempotent",
+      "pass": true
+    },
+    {
+      "check": "calendar includes all and only included chores",
+      "pass": true
+    },
+    {
+      "check": "calendar CRLF complete",
+      "pass": true
+    },
+    {
+      "check": "calendar explicitly advisory",
+      "pass": true
+    },
+    {
+      "check": "older feasible approval rejected after infeasible new revision",
+      "pass": true
+    },
+    {
+      "check": "historical approved calendar remains unchanged",
+      "pass": true
+    },
+    {
+      "check": "24:00 converted to next date",
+      "pass": true
+    },
+    {
+      "check": "export rejects altered persisted approved proposal",
+      "pass": true
+    },
+    {
+      "check": "two stores cannot both commit the same expected revision",
+      "pass": true
+    },
+    {
+      "check": "normal loopback GET",
+      "pass": true
+    },
+    {
+      "check": "no permissive CORS",
+      "pass": true
+    },
+    {
+      "check": "GET denies wrong Host",
+      "pass": true
+    },
+    {
+      "check": "POST denies wrong Host",
+      "pass": true
+    },
+    {
+      "check": "GET denies wrong Origin",
+      "pass": true
+    },
+    {
+      "check": "POST denies wrong Origin",
+      "pass": true
+    },
+    {
+      "check": "GET denies opaque Origin",
+      "pass": true
+    },
+    {
+      "check": "POST denies opaque Origin",
+      "pass": true
+    },
+    {
+      "check": "GET denies cross-site fetch",
+      "pass": true
+    },
+    {
+      "check": "POST denies cross-site fetch",
+      "pass": true
+    },
+    {
+      "check": "same-origin localhost alias accepted",
+      "pass": true
+    },
+    {
+      "check": "HTML form POST rejected",
+      "pass": true
+    },
+    {
+      "check": "malformed JSON rejected",
+      "pass": true
+    },
+    {
+      "check": "JSON array rejected",
+      "pass": true
+    },
+    {
+      "check": "oversized body rejected",
+      "pass": true
+    },
+    {
+      "check": "unknown endpoint rejected",
+      "pass": true
+    },
+    {
+      "check": "test chat reached serialized run",
+      "pass": true
+    },
+    {
+      "check": "second simultaneous chat rejected",
+      "pass": true
+    },
+    {
+      "check": "manual plan remains usable during chat",
+      "pass": true
+    },
+    {
+      "check": "stale chat cannot overwrite manual plan",
+      "pass": true
+    }
+  ],
+  "ics_time_semantics": "Floating calendar times intentionally interpreted in importing calendar local zone; fictional Oct 1, no fixed New Jersey instant asserted."
+}

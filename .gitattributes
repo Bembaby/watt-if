@@ -1,0 +1,2 @@
+# Preserve exact bytes for recorded source hashes across platforms.
+* -text

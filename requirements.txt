@@ -1,0 +1,2 @@
+strands-agents[ollama]==1.54.0
+ollama==0.6.2

@@ -1,0 +1,171 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width,initial-scale=1" />
+    <title>Watt If — make room for your evening</title>
+    <link rel="stylesheet" href="/style.css" />
+    <script src="/app.js" defer></script>
+  </head>
+  <body>
+    <header>
+      <a class="brand" href="/" aria-label="Watt If home"
+        ><span class="mark" aria-hidden="true">w</span>Watt If<span
+          class="brand-note"
+          >Make room for your evening.</span
+        ></a
+      ><span class="simulation">Alexa+ simulation</span>
+    </header>
+    <main>
+      <div class="intro">
+        <div>
+          <h1>Plans change.<br />Your evening can, too.</h1>
+          <p>
+            Tell the assistant what changed. Review where your optional chores
+            fit, then save an advisory calendar.
+          </p>
+        </div>
+        <div class="house-note">
+          <span class="home-icon" aria-hidden="true">⌂</span>
+          <div>
+            One fictional household<br /><span id="date-label"
+              >Six hours. Three optional chores.</span
+            >
+          </div>
+        </div>
+      </div>
+      <div class="workbench">
+        <section class="conversation" aria-labelledby="conversation-title">
+          <div class="section-heading">
+            <h2 id="conversation-title">What changed?</h2>
+            <span class="status-dot" id="model-status"
+              >Checking local model</span
+            >
+          </div>
+          <div id="messages" class="messages" aria-live="polite">
+            <p class="assistant-message">
+              A quieter dinner, an earlier bedtime, a bike ready to go. Let’s
+              see what fits.
+            </p>
+          </div>
+          <form id="chat-form">
+            <label for="message">Tell Watt If</label
+            ><textarea
+              id="message"
+              rows="3"
+              maxlength="1500"
+              placeholder="Finish the dryer by 8 pm, and have my bike ready by 10 pm."
+              required
+            ></textarea>
+            <div class="send-row">
+              <span id="request-status" role="status"
+                >Runs on a local AI model.</span
+              ><button id="send" type="submit">
+                Find a new plan <span aria-hidden="true">↗</span>
+              </button>
+            </div>
+          </form>
+          <div class="prompt-list" aria-label="Example requests">
+            <span>Try a change</span
+            ><button
+              type="button"
+              data-prompt="Keep the dryer and dishwasher finished by 8 pm. Have the ebike ready by 10 pm."
+            >
+              Dinner guests at eight</button
+            ><button
+              type="button"
+              data-prompt="Skip the dryer. Keep quiet after 9 pm. Have the ebike ready by 10 pm."
+            >
+              Laundry can wait</button
+            ><button
+              type="button"
+              data-prompt="Start the dryer at 9 pm. Keep quiet after 8 pm."
+            >
+              A plan that cannot fit
+            </button>
+          </div>
+          <details class="constraints">
+            <summary>Set times yourself</summary>
+            <p>The AI and these controls use the same checked planner.</p>
+            <form id="constraint-form">
+              <label for="quiet">No noisy chores after</label
+              ><select id="quiet"></select>
+              <div id="job-controls"></div>
+              <button type="submit" class="secondary">
+                Preview these times
+              </button>
+            </form>
+          </details>
+        </section>
+        <section class="evening" aria-labelledby="evening-title">
+          <div class="section-heading">
+            <div>
+              <h2 id="evening-title">Your evening, with room to breathe.</h2>
+              <p id="plan-caption">
+                Create a plan to see where each chore fits.
+              </p>
+            </div>
+            <span class="revision" id="revision">No proposal yet</span>
+          </div>
+          <div id="empty-plan" class="empty-plan">
+            <div class="empty-clock" aria-hidden="true"><span></span></div>
+            <h3>A small shift can make space.</h3>
+            <p>
+              Start with the fictional household’s default times, or tell Watt
+              If what you need.
+            </p>
+            <button type="button" id="default-plan" class="secondary">
+              Preview the starting plan
+            </button>
+          </div>
+          <div id="plan-content" hidden>
+            <div class="timeline-scroll">
+              <div
+                id="timeline"
+                class="timeline"
+                aria-label="Proposed chore schedule"
+              ></div>
+            </div>
+            <p id="skipped" class="skipped" hidden></p>
+            <div id="metrics" class="metrics"></div>
+            <div id="load-chart" class="load-chart"></div>
+            <p id="explanation" class="explanation"></p>
+            <div class="approval-bar">
+              <div>
+                <strong id="approval-title"
+                  >A proposal, ready for your review.</strong
+                >
+                <p id="approval-caption">
+                  Nothing runs automatically. Approving creates an advisory
+                  calendar.
+                </p>
+              </div>
+              <button type="button" id="approve" disabled>
+                Approve calendar</button
+              ><a id="download" class="download" hidden>Download calendar</a>
+            </div>
+          </div>
+          <div id="plan-error" class="plan-error" role="alert" hidden></div>
+          <footer class="evidence-note">
+            <strong>Modeled timing, not measured savings.</strong> All loads,
+            rates and forecasts are fictional. Only explicitly deferrable chores
+            are included. Watt If does not connect to Alexa or control
+            appliances.
+          </footer>
+          <details id="trace-panel" class="trace">
+            <summary>What the assistant actually did</summary>
+            <p id="trace-caption">
+              No AI request has run yet. A manual preview uses the planner
+              directly.
+            </p>
+            <pre id="trace"></pre>
+          </details>
+        </section>
+      </div>
+    </main>
+    <footer class="page-footer">
+      <span>Watt If · Built on the PeakShift exact planner</span
+      ><span>Human approval stays in your hands.</span>
+    </footer>
+  </body>
+</html>

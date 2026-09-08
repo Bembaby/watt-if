@@ -1,0 +1,15 @@
+{
+  "started_at": "2026-09-08T13:03:53.186Z",
+  "inference_performed": false,
+  "status_response": "Explicit ready:false UI fixture; planning/approval requests use actual local server",
+  "checks": [
+    "Unavailable model is not shown as ready",
+    "Manual planner works with offline model status",
+    "Editing time controls removes stale download and approval",
+    "Preview applies changed quiet cutoff before approval",
+    "390px layout has no page overflow"
+  ],
+  "page_errors": [],
+  "passed": true,
+  "completed_at": "2026-09-08T13:03:54.114Z"
+}

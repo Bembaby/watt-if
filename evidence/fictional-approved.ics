@@ -1,0 +1,29 @@
+BEGIN:VCALENDAR
+VERSION:2.0
+PRODID:-//Watt If//Fictional Advisory Calendar//EN
+CALSCALE:GREGORIAN
+BEGIN:VEVENT
+UID:c2eed73c0e5d9a0afa90f85c-dishwasher@watt-if.local
+DTSTAMP:20260908T131428Z
+DTSTART:20261001T180000
+DTEND:20261001T193000
+SUMMARY:Advisory - Optional dishwasher
+DESCRIPTION:Fictional Oct 1 demo. No device control. Review before use.
+END:VEVENT
+BEGIN:VEVENT
+UID:c2eed73c0e5d9a0afa90f85c-dryer@watt-if.local
+DTSTAMP:20260908T131428Z
+DTSTART:20261001T180000
+DTEND:20261001T190000
+SUMMARY:Advisory - Optional dryer
+DESCRIPTION:Fictional Oct 1 demo. No device control. Review before use.
+END:VEVENT
+BEGIN:VEVENT
+UID:c2eed73c0e5d9a0afa90f85c-ebike@watt-if.local
+DTSTAMP:20260908T131428Z
+DTSTART:20261001T200000
+DTEND:20261001T220000
+SUMMARY:Advisory - Optional e-bike charger
+DESCRIPTION:Fictional Oct 1 demo. No device control. Review before use.
+END:VEVENT
+END:VCALENDAR
