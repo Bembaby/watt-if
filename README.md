@@ -1,16 +1,20 @@
 # Watt If
 
-**Make room for your evening.** A working household scheduling application built on PeakShift, with a local Strands agent, checked time constraints, a visual evening plan, and a human-approved advisory calendar.
+**Make room for your evening.** A working household scheduling application built on PeakShift, with a Strands agent, checked time constraints, a visual evening plan, and a human-approved advisory calendar.
 
-[Watch the 79-second working demonstration](https://youtu.be/JFKJRdyYYUI) · [Development friction log](FRICTION_LOG.md) · [Actual verification evidence](evidence/README.md)
+[Watch the September8 baseline demonstration](https://youtu.be/JFKJRdyYYUI) · [Development friction log](FRICTION_LOG.md) · [Historical verification evidence](evidence/README.md)
 
-![The actual browser after a verified local agent run](evidence/desktop.png)
+The October 21 upgrade adds a textured midnight/cobalt interface with licensed marble art, self-hosted typography, visible constraint review, retained unresolved requests, explicit manual replacement and persistent exact-start semantics. The existing submitted version and video are preserved. See [upgrade verification](VERIFICATION_UPGRADE.md) for current evidence and publication gates. The historical demo does not show this redesign.
+
+The [refreshed demonstration candidate](demo/README.md) includes synthetic narration, captions, actual continuous execution and asset credits. It awaits final publication approval. The conversation supports a deliberately small command vocabulary; use the documented examples or the manual controls for unsupported wording.
+
+![October 21 redesigned interface; separate traces document real inference](evidence/upgrade-20261021/interface-desktop.png)
 
 This is a **simulated Alexa+ experience**, using the alternative allowed by the [Amazon Developer Hackathon rules](https://amazonappdev2026.devpost.com/rules). It does not connect to Alexa, start appliances, use live electricity prices, or measure household savings. Every load and forecast is fictional. All calendar events use the clearly labeled demonstration date **October 1, 2026**, as floating local times.
 
 ## Run
 
-Python 3.12 is the tested runtime. The manual planner uses only the Python standard library. The conversation needs a locally installed tool-capable Qwen 2.5 14B model through Ollama and the pinned Strands dependencies. Model files require several gigabytes of disk space and a suitable local machine.
+Python 3.12 is the tested runtime. Install the pinned application dependencies below. The deterministic optimizer does not need a model service; the time controls remain available without inference. The conversation needs a tool-capable Qwen 2.5 14B model through Ollama. Model files require several gigabytes of disk space and sufficient memory.
 
 ```sh
 python -m venv .venv
@@ -22,7 +26,15 @@ python app.py
 # Open http://127.0.0.1:8793
 ```
 
-If Ollama is already running, do not start a second server. The app checks the installed local model inventory and rejects cloud model descriptors. It has no hosted inference fallback, cloud credentials or paid-service integration. `/api/status` reports model availability separately from actual inference evidence. “Set times yourself” works without a model.
+If Ollama is already running, do not start a second server. The app checks the configured model inventory and rejects Ollama cloud model descriptors. It has no automatic hosted fallback or cloud credentials. `/api/status` reports model availability separately from actual inference evidence. “Set times yourself” works without a model.
+
+An operator may instead supply an existing SSH loopback forward to an Ollama instance they control. No rental, SSH connection or billing is initiated by the application. For example, after separately establishing a secure forward on port11435:
+
+```sh
+python app.py --ollama-port 11435 --model-location runpod_ssh_tunnel --state remote-demo.sqlite3
+```
+
+The UI and traces then identify RunPod execution via SSH, including offline status. The location is explicit operator configuration, not provider attestation. Requests still target only127.0.0.1; no public inference endpoint or arbitrary host URL is accepted. The same qwen2.5:14b model and validators are used. The October21 upgrade was verified through this path with an identical model digest; the temporary GPU was then terminated. Renting a GPU is not required to use the application.
 
 For repeatable runs, provide a fresh state filename:
 
@@ -55,6 +67,10 @@ Deterministic code validates constraints and solves the small scheduling problem
 
 The supported interface is intentionally narrow: explicit evening start times, finish deadlines, a quiet-time cutoff, and skip/restore instructions for the named chores. Use short direct sentences. Conditional or negated requests may require clarification. General conversation understanding is not guaranteed; the time controls provide an inspectable alternative.
 
+An exact start persists separately from a not-before time and a finish deadline. Changing an exact start never creates a hidden finish deadline. Manual controls expose the exact-start choice. Unsupported companion chores are rejected rather than silently dropped. This is a deliberately bounded command vocabulary.
+
+Failed or clarification-only model requests persist across restart. Retry wording retains the original request,and follow-ups retain unresolved obligations. Approval remains blocked until a checked plan resolves the current request or the person explicitly replaces it using reviewed manual constraints. Revision checks and pending-request IDs reject stale replacements. Already-approved historical calendars remain exportable.
+
 Each new proposal creates a revision. Approval requires its exact ID and current revision. An older proposal cannot be newly approved after a newer request, including an infeasible request. An existing historical approval can still export its original calendar, with stored source/approval integrity checks. The agent has no approval or export tool.
 
 ```mermaid
@@ -76,6 +92,8 @@ The planner minimizes peak watts first, then modeled carbon, then tariff cost. L
 
 ## Provenance and verification
 
+October 21 verification: 58 regressions pass. The independent oracle found no mismatch across 3,546 scenarios and 140,042 assignments; 29 workflow checks pass. Three fresh Strands/Qwen requests through an operator-owned RunPod SSH forward demonstrated shared deadlines, an infeasible exact-start/quiet-hours conflict, and correction requiring new approval. Both actual calendars match their approval-bound exports byte for byte. The continuous browser take is 39.767 seconds; warmed model turns took 12.156, 6.813 and 9.828 seconds. See the [execution evidence](evidence/upgrade-20261021/README.md) and [verification limits](VERIFICATION_UPGRADE.md). Fresh local inference on this upgrade was not completed; historical local results below remain separately dated.
+
 `planner.py` is preserved byte-for-byte from the existing MIT-licensed PeakShift project: SHA-256 `01c594828a0068893a1808ebc21e6202cbcafe23f1b828f17695481a4b35a8ed`. The original creation date is not established by the imported archive, so this project discloses the reuse instead of claiming a wholly new solver.
 
 The conversation layer, household constraints, persistent revisions, approval/calendar workflow, interface and associated tests were developed September 8, 2026. This is substantial new behavior, not a renamed copy of the original JSON optimizer. Created with substantial AI assistance.
@@ -96,4 +114,4 @@ September 8 verification:
 
 These six model scenarios are finite examples, not a reliability percentage or a general English-understanding benchmark. The browser also passed at 390px width without page overflow. Inference receipts include the actual model digest, source hashes, tool calls, validated constraints and timings. Cold model startup took about 30 seconds in the recorded browser test; later calls in that test took about 4–7 seconds.
 
-Initial testing found invented start times, an incorrect finish/start interpretation, paraphrased evidence, model tool-order failures and inaccurate free-form summary text. Numbered source clauses, complete-instruction validation, explicit dependency reads, checked summary rendering and the larger local model address the demonstrated failures. Historical evidence is retained. No actual Alexa execution, measured household savings, award or final contest submission is claimed.
+Initial testing found invented start times, an incorrect finish/start interpretation, paraphrased evidence, model tool-order failures and inaccurate free-form summary text. Numbered source clauses, complete-instruction validation, explicit dependency reads, checked summary rendering and the larger local model address the demonstrated failures. Historical evidence is retained. No actual Alexa execution, measured household savings or award is claimed. This local upgrade has not been pushed,published or applied to the previously submitted contest entry.

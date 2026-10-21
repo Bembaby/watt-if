@@ -15,11 +15,28 @@ from household import Invalid, Conflict, canonical, digest, slot
 
 ROOT=Path(__file__).resolve().parent
 HOST='http://127.0.0.1:11434'
+EXECUTION_LOCATION='local'
 MODEL='qwen2.5:14b'
 LIMITS={'turns':5,'output_tokens':5000,'total_tokens':18000}
 SOURCE_FILES=('planner.py','household.py','agent.py','app.py','requirements.txt')
 def sources(): return {p:hashlib.sha256((ROOT/p).read_bytes()).hexdigest() for p in SOURCE_FILES}
 LOADED_SOURCES=sources()
+
+def configure_runtime(port=11434, location='local'):
+    """Startup-only configuration. Remote execution requires an operator-owned SSH tunnel."""
+    if type(port) is not int or not 1024<=port<=65535:
+        raise ValueError('Ollama port must be an integer between 1024 and 65535.')
+    if location not in ('local','runpod_ssh_tunnel'):
+        raise ValueError('Model location must be local or runpod_ssh_tunnel.')
+    global HOST,EXECUTION_LOCATION
+    HOST=f'http://127.0.0.1:{port}'
+    EXECUTION_LOCATION=location
+
+def runtime_details():
+    return {'host':HOST,'execution_location':EXECUTION_LOCATION,
+            'cloud_enabled':EXECUTION_LOCATION=='runpod_ssh_tunnel',
+            'transport':'ssh_loopback_forward' if EXECUTION_LOCATION=='runpod_ssh_tunnel' else 'loopback',
+            'location_source':'operator_configuration'}
 
 class RunError(RuntimeError):
     def __init__(self,message,trace=None):
@@ -69,7 +86,7 @@ class IndexedChange(BaseModel):
     clause_id: int = Field(strict=True,ge=1,description='The numbered source clause from the current input that explicitly supports this change.')
 
 JOB_ALIASES={'dryer':r'\bdryer\b','dishwasher':r'\bdishwasher\b','ebike':r'\b(?:e[- ]?bike|bike charger)\b'}
-ACTION_WORDS=r'\b(skip|omit|exclude|cancel|restore|include|resume|unskip)\b'
+ACTION_WORDS=r'\b(skip|omit|exclude|cancel|restore|include|resume|unskip|run|use|schedule)\b'
 
 def request_clauses(message):
     """A deliberately narrow sentence/clause boundary, not general English parsing."""
@@ -111,7 +128,7 @@ def grounded_patch(changes, message):
     if not isinstance(changes,list) or len(changes)>10: raise Invalid('At most ten explicit changes.')
     # A cropped quote must never erase negation elsewhere in the request.
     positive_window=re.sub(r'\b(?:not before|no earlier than)\b',' ',message,flags=re.I)
-    if re.search(r"\b(not|never|without|except|unless|cannot|no)\b|n['’]t\b",positive_window,re.I):
+    if re.search(r"\b(not|never|without|except|unless|cannot|no|if|when|whenever|provided)\b|n['’]t\b",positive_window,re.I):
         raise Invalid('Negated or conditional scheduling requests need clarification. Use direct positive instructions; explicit not-before windows are supported.')
     clauses=request_clauses(message)
     patch={};seen=set();cited_times=set();group_obligations=[];coverage={}
@@ -148,7 +165,7 @@ def grounded_patch(changes, message):
         cited_times.add(value)
         start=bool(re.search(r'\b(start(?:ing)?|not before|no earlier than|earliest)\b',lower))
         finish=bool(re.search(r'\b(finish(?:ed)?|ready|complete(?:d)?|done|deadline)\b',lower))
-        if field=='earliest' and (not start or finish or re.search(r'\bby\b',lower)):
+        if field=='earliest' and (not start or finish or re.search(r'\bby\b',lower) or ('before' in lower and not re.search(r'not before|no earlier than',lower))):
             raise Invalid('earliest changes require an explicit start/not-before instruction, never a finish/ready deadline.')
         if field=='latest_finish' and (not re.search(r'\b(by|before|no later than)\b',lower) or (start and not finish)):
             raise Invalid('latest_finish requires an explicit finish/ready/by deadline, not a start instruction.')
@@ -161,10 +178,21 @@ def grounded_patch(changes, message):
             raise Invalid('A shared instruction names multiple jobs; include the same field change for each named job.')
     for index,clause in enumerate(clauses):
         requested_jobs={j for j,pattern in JOB_ALIASES.items() if re.search(pattern,clause,re.I)}
-        if evidence_times(clause) or re.search(ACTION_WORDS,clause,re.I):
+        generic_plan=bool(re.fullmatch(r'(?:please )?(?:plan|schedule|optimize)(?: my| the)?(?: evening)?',clause,re.I))
+        if not generic_plan and (evidence_times(clause) or re.search(ACTION_WORDS,clause,re.I)):
             if re.search(r'\b(quiet|silent|noise|noisy)\b',clause,re.I): requested_jobs.add('household')
+            if not requested_jobs:
+                raise Invalid('This instruction names no supported chore. Only dryer, dishwasher, ebike and quiet cutoffs are supported; clarify every requested action.')
             if requested_jobs-coverage.get(index,set()):
                 raise Invalid('Every requested job in every instruction clause needs its own grounded change. Do not omit a repeated deadline or skip request.')
+            # This is a bounded command vocabulary, not general English parsing.
+            # Reject unknown companions rather than silently dropping e.g. a fridge.
+            remaining=clause.lower()
+            for pattern in JOB_ALIASES.values(): remaining=re.sub(pattern,' ',remaining)
+            words=set(re.findall(r'[a-z]+',remaining))
+            allowed=set('please the my our both optional and keep have make start starting earliest not before no earlier than finish finished finishing ready complete completed done deadline by at after from quiet silent noise noisy cutoff skip omit exclude cancel restore include resume unskip run use schedule pm am p m a midnight tonight'.split())
+            if words-allowed:
+                raise Invalid('Part of this instruction is outside the supported chore commands. Split it into direct dryer, dishwasher, ebike or quiet-cutoff instructions, or review the manual controls.')
     if not changes and re.search(r'\b(skip|omit|cancel|restore|include|resume)\b',message,re.I):
         raise Invalid('Explicit skip/restore instruction needs a grounded change; do not silently ignore it.')
     return patch
@@ -179,10 +207,10 @@ def model_details():
         with opener.open(HOST+'/api/tags',timeout=5) as r: inventory=json.load(r)['models']
         match=next((m for m in inventory if m.get('name')==MODEL),None)
         if details.get('remote_host') or details.get('remote_model') or 'tools' not in details.get('capabilities',[]) or not match or not match.get('digest'):
-            raise ValueError('Installed tool-capable local model required.')
-        return {'model_id':MODEL,'model_digest':match['digest']}
+            raise ValueError('Installed tool-capable model required; Ollama cloud descriptors are rejected.')
+        return {'model_id':MODEL,'model_digest':match['digest'],**runtime_details()}
     except Exception as exc:
-        raise RunError(f'Local Ollama {MODEL} is unavailable. No cloud call or fallback ran.') from exc
+        raise RunError(f'Configured Ollama {MODEL} is unavailable. No fallback ran.') from exc
 
 SYSTEM='''You are Watt If, a fictional Alexa+ household scheduling experience.
 Use read_household to inspect the household when needed. Current saved constraints are authoritative.
@@ -227,7 +255,8 @@ press Approve in the UI to obtain an advisory calendar. No model instruction can
 def run(message, store, timeout_seconds=120, model=None):
     if not isinstance(message,str) or not 1<=len(message.strip())<=2000: raise Invalid('Message must contain 1–2000 characters.')
     if sources()!=LOADED_SOURCES: raise RunError('Source changed. Restart the app before inference.')
-    initial=store.household()
+    initial=store.begin_request(message)
+    message=initial['pending_request']['message']
     source_clauses=[{'clause_id':i+1,'text':clause} for i,clause in enumerate(request_clauses(message))]
     snapshot=sources()
     if model is None:
@@ -236,7 +265,7 @@ def run(message, store, timeout_seconds=120, model=None):
         model=OllamaModel(host=HOST,model_id=MODEL,temperature=0,max_tokens=1400,options={'num_ctx':8192},
                           ollama_client_args={'timeout':90.0,'trust_env':False,'follow_redirects':False})
         evidence='real-model-inference'
-    else: details={'model_id':'injected-test-fixture'}; evidence='sdk-fixture'
+    else: details={'model_id':'injected-test-fixture','execution_location':'test_fixture'}; evidence='sdk-fixture'
     from strands import Agent,tool
     from strands.tools.executors import SequentialToolExecutor
     events=[]; prepared={}; reads=0; attempts=0
@@ -273,7 +302,20 @@ def run(message, store, timeout_seconds=120, model=None):
         try:
             resolved=resolve_indexed_changes(change_values,message)
             constraints=grounded_patch(resolved,message)
+            for change in resolved:
+                if change['field']=='earliest':
+                    exact=bool(re.search(r'\bstart(?:ing)?\b.*\bat\b',change['evidence'],re.I))
+                    constraints['jobs'][change['job_id']]['exact_start']=change['value'] if exact else None
             preview=store.preview(constraints,initial)
+            for change in resolved:
+                job,field=change['job_id'],change['field']
+                if job != 'household' and initial['constraints']['jobs'][job]['skip'] and field != 'skip':
+                    if constraints.get('jobs',{}).get(job,{}).get('skip') is not False:
+                        raise Invalid('This chore is currently left out. Explicitly restore/include it before changing its time.')
+                if field == 'earliest' and re.search(r'\bstart(?:ing)?\b.*\bat\b',change['evidence'],re.I) and preview['status']=='proposed':
+                    scheduled=next((j for j in preview['schedule'] if j['job_id']==job),None)
+                    if scheduled and scheduled['start'] != change['value']:
+                        raise Invalid('This would not start at the exact requested time. Use an explicit not-before window or adjust the manual controls and review the actual timetable.')
         except (Invalid,ValueError) as exc:
             events.append({'tool':'propose_evening','args':{'changes':change_values},'resolved_changes':resolved,'result':{'error':str(exc)},'elapsed_ms':round((time.monotonic()-started)*1000)})
             raise
@@ -300,7 +342,7 @@ def run(message, store, timeout_seconds=120, model=None):
                read_count=reads,proposal_attempt_count=attempts,validated_preview=bool(prepared),
                source_clauses=source_clauses,grounding_method='server_resolved_clause_ids',
                usage=dict(result.metrics.accumulated_usage) if result else None,source_sha256=snapshot,
-               household_revision=initial['revision'],message_sha256=digest(message),approval_performed=False)
+               household_revision=initial['revision'],request_id=initial['pending_request']['id'],message_sha256=digest(message),approval_performed=False)
     if failure:
         trace.update(status='failed',error_type=type(failure).__name__)
         raise RunError('Strands failed or timed out. No proposal was saved; no fallback ran.',trace) from failure
@@ -318,14 +360,18 @@ def run(message, store, timeout_seconds=120, model=None):
     except Conflict as exc:
         trace['status']='stale_state';exc.trace=trace
         raise
-    return {'reply':proposal_reply(proposal) if proposal else str(result),'reply_source':reply_source,'proposal':proposal,'trace':trace}
+    return {'reply':proposal_reply(proposal) if proposal else str(result),'reply_source':reply_source,'proposal':proposal,'trace':trace,
+            'pending_request':store.household().get('pending_request')}
 
 if __name__=='__main__':
     import argparse
     from household import Store
     p=argparse.ArgumentParser(description=__doc__)
     p.add_argument('message');p.add_argument('--state',required=True);p.add_argument('--receipt')
+    p.add_argument('--ollama-port',type=int,default=11434)
+    p.add_argument('--model-location',choices=['local','runpod_ssh_tunnel'],default='local')
     args=p.parse_args()
+    configure_runtime(args.ollama_port,args.model_location)
     try: output=run(args.message,Store(args.state));code=0
     except (Invalid,RunError) as exc:
         output={'error':str(exc),'proposal':None,'trace':getattr(exc,'trace',None)};code=1

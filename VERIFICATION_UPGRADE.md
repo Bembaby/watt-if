@@ -1,0 +1,23 @@
+# October21 upgrade verification
+
+This describes a local release candidate. Existing submitted source/video are unchanged. Do not read historical model results as verification of the upgraded revision.
+
+| Evidence type | Result and scope |
+| --- | --- |
+| Baseline rerun |44regressions passed before changes. Independent oracle3,546scenarios/140,042assignments and29workflow checks passed. |
+| Current deterministic/SDK-fixture suite |58passed,including exact-start semantics and optional SSH runtime guard/status checks. Fixtures are not inference evidence. |
+| Independent planner/workflow rerun |3,546scenarios,140,042assignments,zero oracle failures;29/29workflow checks passed after exact-start support. Solver file unchanged. |
+| Exact-start spot matrix |39positions checked across three chores;18feasible schedules honored their requested exact start. New regression verifies both feasible and infeasible outcomes against duration/quiet limits. |
+| Actual browser,manual planner |Supported in-app browser exercised deadline preview,approval,actual ICS download,infeasible hold,correction and fresh approval. Three actual fictional calendar events inspected. No model inference occurred in this take. |
+| Actual server denials |Old and formerly infeasible proposal approval requests returned409 after a newer revision. Existing tests separately verify current infeasible proposal rejection. |
+| Recovery review |Independent SDK/backend and DOM-fixture checks verify retry/follow-up retention,pending-state reload,clarification/manual replacement,stale request IDs and legacy pending-state migration. |
+| Visual review |The revised textured interface was rendered at1440desktop,390phone and320phone widths with no document overflow. Original grain,CC0 marble photography and self-hosted fonts loaded. Independent screenshot/code review found two contrast blockers;corrected dryer text measures5.00:1 and paper focus7.11:1. Actual keyboard focus uses the dark paper outline. Final aesthetic approval belongs to the user. |
+| Fresh real inference |Three actual Strands/Qwen requests through an operator-owned RunPod SSH forward passed on the redesigned interface:shared deadlines,infeasible conflict,and correction. Model digest matches the existing local model;all five executing source hashes match. Warmed turns12.156,6.813and9.828seconds. Earlier local cold loading failed and partial-GPU diagnosis was canceled under memory pressure;those failures remain recorded. No fixture fallback or substitute model ran. |
+| Recording/render |The complete actual39.767-second take06 includes three model requests,two approvals and two actual downloads. The narrated review film is123.93seconds. Constant cropping removes blank compositor matte only;normal elapsed timing and the complete sequence remain. Earlier attempts are preserved separately and not spliced into this take. Full media decoding passes. Final auditory/visual approval remains a human review gate. |
+| Unsupported wording |An earlier take using “Let the dryer finish by midnight” was rejected by the deliberately narrow command vocabulary. The request remained pending and approval blocked. The successful take uses the documented “Have the dryer finished by midnight.” No validator was loosened to obtain that result. This is not general English understanding. |
+| ElevenLabs |Bella stock voice sample and full narration succeeded. Full narration114.05seconds,character timing aligns with the script,and audio decoding passes without digital clipping. Narration is presentation,not application voice functionality. |
+| Higgsfield |One illustrative opening clip completed/downloaded:5.04seconds,1280x720,24fps. Full decoding passes;frame inspected. No application UI or execution evidence. |
+| Optional SSH runtime |Loopback configuration and explicit location reporting pass offline regression checks and the three real workflows above. Independent review validates source,proposal,approval and ICS bindings. Temporary pod removal and zero hourly spend are verified privately. The app never rents a GPU or reads provider credentials. |
+| Publication |Local release candidate only. No push,upload or contest edit. Exact publication/entry-change approval is required. |
+
+Public claims are limited to these observed checks. No user adoption, real energy savings, device execution or general language reliability percentage is claimed. The calendar date remains fictional October 1, 2026. Media credentials are not needed to run the planner. Executing source and artifact hashes are in [the public evidence manifest](evidence/upgrade-20261021/manifest.json). The final source commit and publication approval are tracked privately.

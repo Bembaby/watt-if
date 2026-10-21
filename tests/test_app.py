@@ -5,6 +5,7 @@ import sys
 import tempfile
 import threading
 import unittest
+from unittest.mock import patch
 sys.path.insert(0,str(Path(__file__).resolve().parents[1]))
 from app import Server
 from household import Store
@@ -37,5 +38,25 @@ class ApiTests(unittest.TestCase):
         p=json.loads(self.request('/api/plan',{'constraints':{}})[1])['proposal']
         self.request('/api/plan',{'constraints':{'quiet_after':'18:00'}})
         self.assertEqual(self.request('/api/approve',{'proposal_id':p['id'],'revision':p['revision']})[0],409)
+    def test_tunnel_status_is_explicit_even_when_model_is_offline(self):
+        import agent
+        old_host,old_location=agent.HOST,agent.EXECUTION_LOCATION
+        try:
+            agent.configure_runtime(11435,'runpod_ssh_tunnel')
+            with patch('agent.model_details',side_effect=agent.RunError('Offline')):
+                status,data=self.request('/api/status')
+            result=json.loads(data)
+            self.assertEqual(status,200)
+            self.assertFalse(result['ready'])
+            self.assertTrue(result['cloud_enabled'])
+            self.assertEqual(result['execution_location'],'runpod_ssh_tunnel')
+            self.assertEqual(result['host'],'http://127.0.0.1:11435')
+            self.assertEqual(result['transport'],'ssh_loopback_forward')
+        finally:agent.HOST,agent.EXECUTION_LOCATION=old_host,old_location
+    def test_runtime_cannot_configure_arbitrary_network_hosts(self):
+        from agent import configure_runtime
+        for port in (True,'11435',80,65536,'https://example.com'):
+            with self.assertRaises(ValueError):configure_runtime(port,'runpod_ssh_tunnel')
+        with self.assertRaises(ValueError):configure_runtime(11435,'unreviewed_provider')
 
 if __name__=='__main__':unittest.main()

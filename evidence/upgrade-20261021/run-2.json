@@ -1,0 +1,292 @@
+{
+  "proposal": {
+    "baseline_metrics": null,
+    "constraints": {
+      "jobs": {
+        "dishwasher": {
+          "earliest": "18:00",
+          "latest_finish": "20:00",
+          "skip": false
+        },
+        "dryer": {
+          "earliest": "21:00",
+          "exact_start": "21:00",
+          "latest_finish": "20:00",
+          "skip": false
+        },
+        "ebike": {
+          "earliest": "18:00",
+          "latest_finish": "22:00",
+          "skip": false
+        }
+      },
+      "quiet_after": "20:00"
+    },
+    "created_at": "2026-10-21T17:43:07.374665+00:00",
+    "execution": {
+      "approval_performed": false,
+      "cloud_enabled": true,
+      "completed_at": "2026-10-21T17:43:07.372637+00:00",
+      "elapsed_seconds": 6.813,
+      "evidence_type": "real-model-inference",
+      "execution_location": "runpod_ssh_tunnel",
+      "grounding_method": "server_resolved_clause_ids",
+      "host": "http://127.0.0.1:11435",
+      "household_revision": 1,
+      "limits": {
+        "output_tokens": 5000,
+        "total_tokens": 18000,
+        "turns": 5
+      },
+      "location_source": "operator_configuration",
+      "message_sha256": "1ab8aa15fca897ba5baf53a37c6bcca0a35c9cdb0215bf99ee24e85ce663a67f",
+      "model_digest": "7cdf5a0187d5c58cc5d369b255592f7841d1c4696d45a8c8a9489440385b22f6",
+      "model_id": "qwen2.5:14b",
+      "model_response_sha256": "825fa94d979e586705f61921e173002064ca11e59406439174ab59405e827518",
+      "model_thinking": false,
+      "proposal_attempt_count": 1,
+      "provider": "ollama",
+      "read_count": 1,
+      "reply_source": "validated_proposal_template",
+      "request_id": "a256408fbd9f71d94b7b066d",
+      "sdk_tool_events": [
+        {
+          "args": {
+            "changes": [
+              {
+                "clause_id": 1,
+                "field": "earliest",
+                "job_id": "dryer",
+                "value": "21:00"
+              },
+              {
+                "clause_id": 2,
+                "field": "quiet_after",
+                "job_id": "household",
+                "value": "20:00"
+              }
+            ]
+          },
+          "tool": "propose_evening",
+          "tool_use_id": "tooluse_c244b52187c64c3a89146d1d",
+          "type": "tool_use"
+        },
+        {
+          "content": [
+            {
+              "text": "{\"status\": \"infeasible\", \"constraints\": {\"quiet_after\": \"20:00\", \"jobs\": {\"dryer\": {\"earliest\": \"21:00\", \"latest_finish\": \"20:00\", \"skip\": false, \"exact_start\": \"21:00\"}, \"dishwasher\": {\"earliest\": \"18:00\", \"latest_finish\": \"20:00\", \"skip\": false}, \"ebike\": {\"earliest\": \"18:00\", \"latest_finish\": \"22:00\", \"skip\": false}}}, \"schedule\": [], \"metrics\": null, \"baseline_metrics\": null, \"explanation\": \"Optional dryer cannot start exactly at 21:00 within its start, finish and quiet limits. Change the exact start or its limits.\", \"approval_required\": true, \"advisory_only\": true}"
+            }
+          ],
+          "status": "success",
+          "tool_use_id": "tooluse_c244b52187c64c3a89146d1d",
+          "type": "tool_result"
+        }
+      ],
+      "sdk_version": "1.54.0",
+      "source_clauses": [
+        {
+          "clause_id": 1,
+          "text": "Start the dryer at 9 pm"
+        },
+        {
+          "clause_id": 2,
+          "text": "Keep quiet after 8 pm"
+        }
+      ],
+      "source_sha256": {
+        "agent.py": "7aac7a3303045806a51e9e22b4224c3a1e3920d4924e4c06f45cc226d9fa96f9",
+        "app.py": "6a741d644e10e16318f8a7fa86f81437bc2235d1d3895b952ebcba07968d7c2e",
+        "household.py": "2bf2a42cb7e0c9ddb235c6a86eaacd9e97ecec5cd9088029c6dd48223f89bf37",
+        "planner.py": "01c594828a0068893a1808ebc21e6202cbcafe23f1b828f17695481a4b35a8ed",
+        "requirements.txt": "cc438cf88efdda83e0b8600679f430293c71fd1fa0cfa3ca528e7dbb97cbb3f0"
+      },
+      "started_at": "2026-10-21T17:43:00.547003+00:00",
+      "status": "completed",
+      "stop_reason": "end_turn",
+      "tool_events": [
+        {
+          "args": {},
+          "elapsed_ms": 0,
+          "initiated_by": "proposal_dependency",
+          "result": {
+            "constraints": {
+              "jobs": {
+                "dishwasher": {
+                  "earliest": "18:00",
+                  "latest_finish": "20:00",
+                  "skip": false
+                },
+                "dryer": {
+                  "earliest": "18:00",
+                  "latest_finish": "20:00",
+                  "skip": false
+                },
+                "ebike": {
+                  "earliest": "18:00",
+                  "latest_finish": "22:00",
+                  "skip": false
+                }
+              },
+              "quiet_after": "21:00"
+            },
+            "date": "2026-10-01",
+            "default_constraints": {
+              "jobs": {
+                "dishwasher": {
+                  "earliest": "18:00",
+                  "latest_finish": "24:00",
+                  "skip": false
+                },
+                "dryer": {
+                  "earliest": "18:00",
+                  "latest_finish": "24:00",
+                  "skip": false
+                },
+                "ebike": {
+                  "earliest": "18:00",
+                  "latest_finish": "24:00",
+                  "skip": false
+                }
+              },
+              "quiet_after": "21:00"
+            },
+            "end": "24:00",
+            "jobs": [
+              {
+                "deferrable": true,
+                "duration_minutes": 60,
+                "id": "dryer",
+                "name": "Optional dryer",
+                "noisy": true,
+                "watts": 2200
+              },
+              {
+                "deferrable": true,
+                "duration_minutes": 90,
+                "id": "dishwasher",
+                "name": "Optional dishwasher",
+                "noisy": true,
+                "watts": 1400
+              },
+              {
+                "deferrable": true,
+                "duration_minutes": 120,
+                "id": "ebike",
+                "name": "Optional e-bike charger",
+                "noisy": false,
+                "watts": 300
+              }
+            ],
+            "name": "Watt If fictional home",
+            "pending_request": {
+              "id": "a256408fbd9f71d94b7b066d",
+              "message": "Start the dryer at 9 pm. Keep quiet after 8 pm.",
+              "received_at": "2026-10-21T17:43:00.094538+00:00",
+              "status": "needs_plan"
+            },
+            "revision": 1,
+            "slot_minutes": 30,
+            "start": "18:00",
+            "warning": "Fictional Alexa+ experience simulation. Synthetic loads and tariffs. Advisory calendar only; no device control or measured savings."
+          },
+          "tool": "read_household"
+        },
+        {
+          "args": {
+            "changes": [
+              {
+                "clause_id": 1,
+                "field": "earliest",
+                "job_id": "dryer",
+                "value": "21:00"
+              },
+              {
+                "clause_id": 2,
+                "field": "quiet_after",
+                "job_id": "household",
+                "value": "20:00"
+              }
+            ]
+          },
+          "elapsed_ms": 0,
+          "resolved_changes": [
+            {
+              "evidence": "Start the dryer at 9 pm",
+              "field": "earliest",
+              "job_id": "dryer",
+              "value": "21:00"
+            },
+            {
+              "evidence": "Keep quiet after 8 pm",
+              "field": "quiet_after",
+              "job_id": "household",
+              "value": "20:00"
+            }
+          ],
+          "result": {
+            "advisory_only": true,
+            "approval_required": true,
+            "baseline_metrics": null,
+            "constraints": {
+              "jobs": {
+                "dishwasher": {
+                  "earliest": "18:00",
+                  "latest_finish": "20:00",
+                  "skip": false
+                },
+                "dryer": {
+                  "earliest": "21:00",
+                  "exact_start": "21:00",
+                  "latest_finish": "20:00",
+                  "skip": false
+                },
+                "ebike": {
+                  "earliest": "18:00",
+                  "latest_finish": "22:00",
+                  "skip": false
+                }
+              },
+              "quiet_after": "20:00"
+            },
+            "explanation": "Optional dryer cannot start exactly at 21:00 within its start, finish and quiet limits. Change the exact start or its limits.",
+            "metrics": null,
+            "schedule": [],
+            "status": "infeasible"
+          },
+          "tool": "propose_evening",
+          "validated_patch": {
+            "jobs": {
+              "dryer": {
+                "earliest": "21:00",
+                "exact_start": "21:00"
+              }
+            },
+            "quiet_after": "20:00"
+          }
+        }
+      ],
+      "transport": "ssh_loopback_forward",
+      "usage": {
+        "inputTokens": 2707,
+        "outputTokens": 118,
+        "totalTokens": 2825
+      },
+      "validated_preview": true
+    },
+    "explanation": "Optional dryer cannot start exactly at 21:00 within its start, finish and quiet limits. Change the exact start or its limits.",
+    "id": "fac7f3571f7cf4ef7db0edcc",
+    "metrics": null,
+    "optimality_proven": true,
+    "revision": 2,
+    "savings": null,
+    "schedule": [],
+    "sha256": "fac7f3571f7cf4ef7db0edcc58d0b4b261db6386bdae08d7b1342efe71b951bb",
+    "skipped": [],
+    "skipped_job_energy_kwh": 0,
+    "status": "infeasible",
+    "warning": "Fictional Alexa+ experience simulation. Synthetic loads and tariffs. Advisory calendar only; no device control or measured savings."
+  },
+  "evidence_type": "real-model-inference",
+  "household_inputs": "fictional",
+  "location": "RunPod via operator-owned SSH loopback forward"
+}

@@ -46,11 +46,12 @@ def merge_constraints(current, patch):
     if not isinstance(updates, dict) or set(updates)-set(DEFAULT['jobs']):
         raise Invalid('Only dryer, dishwasher, and ebike are supported. Critical equipment is never scheduled.')
     for job_id, changes in updates.items():
-        if not isinstance(changes, dict) or set(changes)-{'earliest', 'latest_finish', 'skip'}:
-            raise Invalid('Each job accepts earliest, latest_finish, skip only.')
+        if not isinstance(changes, dict) or set(changes)-{'earliest', 'latest_finish', 'skip', 'exact_start'}:
+            raise Invalid('Each job accepts earliest, latest_finish, skip and optional exact_start only.')
         for key, value in changes.items():
             if key == 'skip':
                 if type(value) is not bool: raise Invalid('skip must be true or false.')
+            elif key=='exact_start' and value is None: pass
             else: slot(value)
             result['jobs'][job_id][key] = value
     return result
@@ -69,6 +70,12 @@ def calculate(constraints):
         finish = slot(c['latest_finish'])
         if job['noisy']: finish = min(finish, slot(constraints['quiet_after']))
         latest = finish-job['duration_minutes']//30
+        if c.get('exact_start') is not None:
+            exact=slot(c['exact_start'])
+            if earliest<=exact<=latest: earliest=latest=exact
+            else:
+                reasons.append(f"{job['name']} cannot start exactly at {c['exact_start']} within its start, finish and quiet limits. Change the exact start or its limits.")
+                continue
         if latest < earliest:
             reasons.append(f"{job['name']} needs {job['duration_minutes']} minutes between {c['earliest']} and {clock(finish)}. Relax its window or skip it.")
         else:
@@ -105,6 +112,10 @@ class Store:
             db.execute('CREATE TABLE IF NOT EXISTS proposals (id TEXT PRIMARY KEY, revision INTEGER, body TEXT)')
             db.execute('CREATE TABLE IF NOT EXISTS approvals (id TEXT PRIMARY KEY, body TEXT)')
             db.execute('INSERT OR IGNORE INTO state VALUES (?,?)', ('current',canonical({'revision':0,'constraints':DEFAULT,'latest_proposal':None})))
+            state=json.loads(db.execute('SELECT value FROM state WHERE key=?',('current',)).fetchone()[0])
+            if state.get('pending_request') and not state['pending_request'].get('id'):
+                state['pending_request']['id']=digest(state['pending_request'])[:24]
+                db.execute('UPDATE state SET value=? WHERE key=?',(canonical(state),'current'))
 
     @contextmanager
     def connect(self):
@@ -123,10 +134,34 @@ class Store:
         state = current or self.household()
         return calculate(merge_constraints(state['constraints'], patch))
 
-    def propose(self, patch, expected_revision=None, execution=None):
+    def begin_request(self, message):
+        """Retain an unresolved instruction across provider failure and restart."""
+        with self.lock, self.connect() as db:
+            db.execute('BEGIN IMMEDIATE')
+            state=json.loads(db.execute('SELECT value FROM state WHERE key=?',('current',)).fetchone()[0])
+            previous=state.get('pending_request')
+            if previous:
+                if message.strip().lower().rstrip('.!?') in ('try again','retry'):
+                    message=previous['message']
+                elif message.strip() != previous['message'].strip() and not message.strip().startswith(previous['message'].strip()):
+                    message=previous['message']+' '+message
+            if len(message)>2000:
+                raise Invalid('Unresolved requests exceed the supported input size. Review and explicitly replace them using the manual controls.')
+            state['pending_request']={'message':message,'received_at':now(),'status':'needs_plan'}
+            state['pending_request']['id']=digest(state['pending_request'])[:24]
+            db.execute('UPDATE state SET value=? WHERE key=?',(canonical(state),'current'))
+            return dict(state, name='Watt If fictional home', date='2026-10-01', start='18:00', end='24:00',
+                        slot_minutes=30, jobs=deepcopy(JOBS), warning=WARNING)
+
+    def propose(self, patch, expected_revision=None, execution=None, resolve_request_id=None):
+        if expected_revision is not None and (type(expected_revision) is not int or expected_revision < 0):
+            raise Invalid('expected_revision must be a nonnegative integer.')
         with self.lock, self.connect() as db:
             db.execute('BEGIN IMMEDIATE')
             state = json.loads(db.execute('SELECT value FROM state WHERE key=?',('current',)).fetchone()[0])
+            pending=state.get('pending_request')
+            if pending and (execution or {}).get('request_id') != pending['id'] and resolve_request_id != pending['id']:
+                raise Conflict('An unresolved request is outstanding. Review it and explicitly replace it, or retry the original request.')
             if expected_revision is not None and state['revision'] != expected_revision:
                 raise Conflict('Household changed during planning. Read the latest state and try again.')
             proposal = self.preview(patch,state)
@@ -143,6 +178,8 @@ class Store:
         with self.lock, self.connect() as db:
             db.execute('BEGIN IMMEDIATE')
             state=json.loads(db.execute('SELECT value FROM state WHERE key=?',('current',)).fetchone()[0])
+            if state.get('pending_request'):
+                raise Conflict('An unresolved request needs a new plan. Retry it or explicitly preview replacement manual constraints before approval.')
             p=state['latest_proposal']
             if not p or p['id'] != proposal_id or revision != state['revision']:
                 raise Conflict('Proposal is stale. Review and approve the current revision.')

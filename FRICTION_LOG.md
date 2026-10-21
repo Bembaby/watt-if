@@ -55,3 +55,13 @@ Recorded September 8, 2026 during an AI-assisted build. These observations conce
 ## Verification after these repairs
 
 The final recorded configuration passed 44 automated regression tests, 3,546 independent scheduling scenarios, 29 approval/calendar/HTTP/concurrency checks, 12 targeted grounding checks, and six actual model scenarios. The continuous demonstration separately performs three real model runs and a human-style approval/download interaction. These are finite examples, not a reliability percentage or a guarantee of general English understanding. See [the evidence directory](evidence/README.md).
+
+## October 21 observations and repairs
+
+The upgrade review found application-owned recovery gaps:unresolved text could be lost after a failed request,unpreviewed manual edits could restore approval,and an exact start could be confused with a not-before window. Retained pending requests,explicit manual replacement,request/revision checks and a separate exact_start constraint address these cases.58regression tests now pass,including feasible and infeasible exact-start positions. These are application defects and test results,not upstream SDK bug claims.
+
+Fresh local model loading failed under memory pressure. A temporary remote Ollama instance using the identical Qwen digest then completed the three recorded workflows through SSH. Explicit runtime location is shown in the UI and traces; no silent fallback was added. A model-inventory response is not successful inference. Preserve the failed startup evidence and distinguish warmed turn timing from cold loading.
+
+The recording harness also exposed two tool constraints:waiting for source frames must be nonblocking,and raw capture polling must pause while the browser resolves a download. The final take uses supported capture commands,retains real timing and completes both downloads. Interrupted recording attempts were preserved rather than presented as application failures or successful complete takes. Production narration and illustration remain separate from runtime proof.
+
+An additional recorded attempt exposed the command-vocabulary limit: “Let the dryer finish by midnight” is outside the explicit allowlist, while “Have the dryer finished by midnight” is supported. The unsupported wording retained the request and kept approval blocked. The final take uses the documented supported command; no validation was relaxed. This remains a usability limitation for future clarification work.

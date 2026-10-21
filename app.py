@@ -10,6 +10,12 @@ from household import Store,Invalid,Conflict
 
 ROOT=Path(__file__).resolve().parent
 STATIC={'/':('index.html','text/html'),'/index.html':('index.html','text/html'),'/app.js':('app.js','application/javascript'),'/style.css':('style.css','text/css')}
+STATIC.update({'/assets/evening-engraving.png':('assets/evening-engraving.png','image/png'),
+               '/assets/night-thorvaldsen.jpg':('assets/night-thorvaldsen.jpg','image/jpeg'),
+               '/assets/grain.svg':('assets/grain.svg','image/svg+xml'),
+               '/assets/fonts/BarlowCondensed-Light.ttf':('assets/fonts/BarlowCondensed-Light.ttf','font/ttf'),
+               '/assets/fonts/BarlowCondensed-SemiBold.ttf':('assets/fonts/BarlowCondensed-SemiBold.ttf','font/ttf'),
+               '/assets/fonts/Manrope.ttf':('assets/fonts/Manrope.ttf','font/ttf')})
 
 class Server(ThreadingHTTPServer):
     daemon_threads=True
@@ -44,13 +50,13 @@ class Handler(BaseHTTPRequestHandler):
             self.boundary();u=urlsplit(self.path)
             if u.path=='/api/household': return self.send(200,{'household':self.server.store.household()})
             if u.path=='/api/status':
-                from agent import model_details,RunError,MODEL
+                from agent import model_details,runtime_details,RunError,MODEL
                 try: details=model_details();ready=True;error=None
                 except RunError as exc: details={};ready=False;error=str(exc)
-                return self.send(200,{'provider':'ollama','model_id':MODEL,'host':'http://127.0.0.1:11434',
-                                      'simulation':True,'advisory_only':True,'cloud_enabled':False,
+                return self.send(200,{'provider':'ollama','model_id':MODEL,**runtime_details(),
+                                      'simulation':True,'advisory_only':True,
                                       'ready':ready,'error':error,**details,
-                                      'model_readiness':'Local inventory checked; this is not inference evidence.'})
+                                      'model_readiness':'Configured inventory checked; this is not inference evidence.'})
             if u.path=='/api/export':
                 q=parse_qs(u.query)
                 if set(q)!={'id'} or len(q['id'])!=1: raise Invalid('One approved id is required.')
@@ -75,8 +81,8 @@ class Handler(BaseHTTPRequestHandler):
             if not isinstance(body,dict): raise Invalid('JSON object required.')
             path=urlsplit(self.path).path
             if path=='/api/plan':
-                if set(body)!={'constraints'}: raise Invalid('Expected constraints only.')
-                return self.send(200,{'proposal':self.server.store.propose(body['constraints'])})
+                if 'constraints' not in body or set(body)-{'constraints','expected_revision','resolve_request_id'}: raise Invalid('Expected constraints, optional expected_revision and resolve_request_id only.')
+                return self.send(200,{'proposal':self.server.store.propose(body['constraints'],expected_revision=body.get('expected_revision'),resolve_request_id=body.get('resolve_request_id'))})
             if path=='/api/approve':
                 if set(body)!={'proposal_id','revision'}: raise Invalid('Expected proposal_id and revision only.')
                 return self.send(200,{'approval':self.server.store.approve(body['proposal_id'],body['revision'])})
@@ -86,7 +92,7 @@ class Handler(BaseHTTPRequestHandler):
                 try:
                     from agent import run,RunError
                     try: result=run(body['message'],self.server.store)
-                    except RunError as exc: return self.send(503,{'error':str(exc),'reply':'No proposal saved.','proposal':None,'trace':exc.trace})
+                    except RunError as exc: return self.send(503,{'error':str(exc),'reply':'No proposal saved.','proposal':None,'trace':exc.trace,'pending_request':self.server.store.household().get('pending_request')})
                     return self.send(200,result)
                 finally: self.server.chat_lock.release()
             return self.send(404,{'error':'Not found.'})
@@ -98,7 +104,11 @@ class Handler(BaseHTTPRequestHandler):
 def main():
     p=argparse.ArgumentParser(description=__doc__);p.add_argument('--port',type=int,default=8793)
     p.add_argument('--state',default=str(ROOT/'watt_if.sqlite3'))
+    p.add_argument('--ollama-port',type=int,default=11434)
+    p.add_argument('--model-location',choices=['local','runpod_ssh_tunnel'],default='local')
     args=p.parse_args()
+    from agent import configure_runtime
+    configure_runtime(args.ollama_port,args.model_location)
     server=Server(('127.0.0.1',args.port),Store(args.state))
     print(f'Watt If local simulation: http://127.0.0.1:{server.server_port}',flush=True)
     server.serve_forever()

@@ -1,0 +1,13 @@
+Dinner moved. Laundry can wait. Watt If helps rearrange three optional chores, without turning a chatbot's guess into an appliance command. This is an Alexa Plus simulation, with fictional household data.
+
+Finish the dryer and dishwasher by eight, and charge the bike by ten. Strands runs Qwen and calls the planning tool. I inspect the checked times, approve revision one, and download the actual calendar.
+
+Now the dryer must start at nine, but quiet hours begin at eight. No timetable fits. Approval and a new calendar are blocked.
+
+I relax the old dryer deadline to midnight and move quiet hours to ten. The nine o'clock exact start stays. After reviewing the new times, I approve revision three and download again.
+
+These are the files that actually downloaded, not a fixture. Each contains three advisory events for fictional October first. The corrected dryer event runs from nine to ten. Stored proposal and approval hashes bind the calendar to the reviewed revision. It never starts an appliance.
+
+Qwen interprets the request through Strands. Numbered source clauses, complete instruction checks, and the reused PeakShift solver constrain the result. Fifty-eight regression tests pass. An independent oracle checked three thousand five hundred forty-six scenarios with no mismatch. Those checks measure these bounded workflows, not general language reliability.
+
+The same application also runs with local Ollama, and manual controls remain available without a model. This take used the same Qwen model on a temporary RunPod GPU through SSH. All loads, prices, and forecasts are invented. There is no live Alexa connection, measured energy saving, or device control. You decide; Watt If makes the tradeoff inspectable.

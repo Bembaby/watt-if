@@ -1,0 +1,64 @@
+{
+  "checks": {
+    "three_real_requests": true,
+    "statuses": true,
+    "source_hashes_match": true,
+    "same_model_digest": true,
+    "proposal_integrity": true,
+    "capture_complete": true,
+    "conflict_blocks_approval": true,
+    "two_revision_bound_approvals": true,
+    "exact_start_retained": true,
+    "actual_download_matches_approval_1": true,
+    "actual_download_matches_approval_3": true
+  },
+  "model_digest": "7cdf5a0187d5c58cc5d369b255592f7841d1c4696d45a8c8a9489440385b22f6",
+  "source_sha256": {
+    "planner.py": "01c594828a0068893a1808ebc21e6202cbcafe23f1b828f17695481a4b35a8ed",
+    "household.py": "2bf2a42cb7e0c9ddb235c6a86eaacd9e97ecec5cd9088029c6dd48223f89bf37",
+    "agent.py": "7aac7a3303045806a51e9e22b4224c3a1e3920d4924e4c06f45cc226d9fa96f9",
+    "app.py": "6a741d644e10e16318f8a7fa86f81437bc2235d1d3895b952ebcba07968d7c2e",
+    "requirements.txt": "cc438cf88efdda83e0b8600679f430293c71fd1fa0cfa3ca528e7dbb97cbb3f0"
+  },
+  "scenario_seconds": [
+    12.156,
+    6.813,
+    9.828
+  ],
+  "raw_browser_seconds": 39.767,
+  "original_source_frames": 62,
+  "source_viewport": [
+    1440,
+    900
+  ],
+  "compositor_crop": [
+    0,
+    0,
+    1080,
+    675
+  ],
+  "recording_note": "Constant removal of blank compositor matte; complete actual workflow and elapsed timing retained. Original source PNGs kept privately. No output was replayed as inference.",
+  "screenshot_scope": "Rendered application on isolated fictional state. Screenshots are interface evidence; separate actual traces and continuous recording document inference.",
+  "frontend_sha256": {
+    "index.html": "2892197da21e5fcf17d819df8946eb12658a3a1ce4119621edaf309a162c5796",
+    "style.css": "c1ae22b8006fd477a1883888fdd270b1b014620aa2dfe01f7ef9f718135138c1",
+    "app.js": "b28d7b1a07d331601cc3fc540ff02bba9516f6f158b9e4efd05c27a45ae93a11",
+    "assets/night-thorvaldsen.jpg": "f34b97ead33b49d6bd6ef4b3b8c961dbd00687cf526962b2d68556a613588a3a",
+    "assets/grain.svg": "e16d218446167224d5ebc51cd05ec8bbc47216c8eb1b502fba189126b8a3b060"
+  },
+  "files": {
+    "actual-run-uncut.mp4": "fba8eaf4af944ce31511e3abd6078334e7d758b34b6331de6af1767ed2fc5b84",
+    "approved-revision-1.ics": "0a7ea79fb3dd7a5e9c8ff08ceb5f12f93db2edb9e833ca7b614f03c63e0a25bd",
+    "approved-revision-3.ics": "2690e79871991ca581b8ad246c8afb29fefe8bb3ad79d4ecc4560a43631e4881",
+    "interface-desktop.png": "75255e7024b9b0bbb513d069d606acdfa35d9c07a8af8e4a33618b909c0c1843",
+    "interface-mobile.png": "49b99add3e6dc476ce16de7dd7cd231f80bca702715e44feb3ba230ffcc2e754",
+    "interface-planner.png": "40530395b84913caf1d8e8e8fb31c9dfa7ff2ea22ffb250d6f5fb1671088d4b5",
+    "README.md": "bb50e84ef5528585f3578f9db6000fdbd11c8e5eaa239cc3f4d56f4387e24968",
+    "run-1.json": "312e21fdb8c517d745d1678ad22ab5b8c2354c9dbde04a1e8c9024f39b937b28",
+    "run-2.json": "1441f7a8083f41f0537d579a268ccf5f80583f12bfc0cdd0e94cc1875fa7424e",
+    "run-3.json": "7601cf0485ac656d07a5ecd30079c358879aabd1d24eed979cde63dfb116fbce"
+  },
+  "encoded_video_seconds": 39.8,
+  "last_static_hold_seconds": 3.337,
+  "timing_note": "Final static frame is held through the measured capture end; output is rounded to the next 30fps frame."
+}
