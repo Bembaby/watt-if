@@ -1,13 +1,13 @@
-Dinner moved. Laundry can wait. Watt If helps rearrange three optional chores, without turning a chatbot's guess into an appliance command. This is an Alexa Plus simulation, with fictional household data.
+You know that moment when the evening changes... but your to-do list doesn't? That's the idea behind Watt If. Three flexible chores, a few boundaries, and a plan you can actually look at before saying yes. This is an Alexa Plus simulation. Let's walk through it.
 
-Finish the dryer and dishwasher by eight, and charge the bike by ten. Strands runs Qwen and calls the planning tool. I inspect the checked times, approve revision one, and download the actual calendar.
+First, dryer and dishwasher by eight. Bike charged by ten. I check the times... approve... and download.
 
-Now the dryer must start at nine, but quiet hours begin at eight. No timetable fits. Approval and a new calendar are blocked.
+Now, dryer at nine. Quiet hours at eight. That doesn't fit. Good. It refuses the request.
 
-I relax the old dryer deadline to midnight and move quiet hours to ten. The nine o'clock exact start stays. After reviewing the new times, I approve revision three and download again.
+Let's make room. Dryer finished by midnight; quiet after ten. It keeps the nine o'clock start. I review... approve... and download again.
 
-These are the files that actually downloaded, not a fixture. Each contains three advisory events for fictional October first. The corrected dryer event runs from nine to ten. Stored proposal and approval hashes bind the calendar to the reviewed revision. It never starts an appliance.
+Here's what that last click gives us: a real calendar file. The dryer goes from nine to ten. The dishwasher and bike have their own slots. These are fictional household details, but the download is real. And there's an important boundary here. Approving a timetable only creates advisory calendar events. It doesn't turn anything on. You still decide what happens in your home.
 
-Qwen interprets the request through Strands. Numbered source clauses, complete instruction checks, and the reused PeakShift solver constrain the result. Fifty-eight regression tests pass. An independent oracle checked three thousand five hundred forty-six scenarios with no mismatch. Those checks measure these bounded workflows, not general language reliability.
+The interesting part is what happens between asking and approving. Strands runs the language model. The planning tool checks the changes against the request and the household rules. If the constraints clash, there's no fresh plan to approve. A correction creates a new revision, so yesterday's yes can't quietly become permission for something different. The evidence includes the requests, both approvals, and the files that actually downloaded.
 
-The same application also runs with local Ollama, and manual controls remain available without a model. This take used the same Qwen model on a temporary RunPod GPU through SSH. All loads, prices, and forecasts are invented. There is no live Alexa connection, measured energy saving, or device control. You decide; Watt If makes the tradeoff inspectable.
+This recording used Qwen on a temporary GPU, through a private SSH connection. The app can also use local Ollama, or its manual controls without a model. Fifty-eight regression tests pass, alongside a separate solver check. Those are bounded checks, not a promise that every sentence will work. No live Alexa connection. No appliance control. No claimed energy savings. Just a little more room to see your choices... before you make them.

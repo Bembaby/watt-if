@@ -1,22 +1,23 @@
 {
-  "duration_seconds": 123.93333333333334,
+  "duration_seconds": 130.26666666666668,
   "video_resolution": [
     1920,
     1080
   ],
   "video_frame_rate": 30,
-  "narration": "ElevenLabs premade Bella; eleven_multilingual_v2. Synthetic presentation, not application voice functionality.",
+  "narration": "ElevenLabs premade Jessica; eleven_v4. Synthetic presentation, not application voice functionality. Conversational rewrite; no speech acceleration.",
   "illustration": "Original Higgsfield Kling 3 clip, opening only. Original clip retained unchanged with provenance.",
   "artwork": "Bertel Thorvaldsen, Night, 1815. Thorvaldsens Museum photograph via Wikimedia Commons, CC0. See ASSET_CREDITS.md.",
   "actual_run": "../evidence/upgrade-20261021/actual-run-uncut.mp4",
   "actual_run_speed": 1,
-  "actual_run_source": "Complete take06, no earlier attempts spliced into it. Constant crop removes only blank compositor matte.",
-  "caption_cues": 30,
+  "actual_run_source": "Complete take06, no earlier attempts spliced into it. Constant compositor-matte crop; proportionally fitted above a separate caption stage. Original continuous run supplied unchanged.",
+  "caption_cues": 58,
   "files": {
-    "captions.srt": "458cb995d53f2ff947b47f75ea278333d244f30a09156f2d5c3190c8f946fd2b",
+    "captions.srt": "bf7b38f6be0076351f0630323cd4ab230bd4478b24818fb00165fbdf64c89d05",
     "illustration-original.mp4": "c10cc404ecb35e563f6114ea6d11b3bdb2ff2f76ec4b032e93c9f714add35c32",
-    "narration-script.txt": "a655b1be433b526a394114fcff714cff3c140539c199dbf91abeab27e03bf8d7",
-    "README.md": "484b4672b46334ddd32222123fd42a67a72d345da442dfce66ce02beeafc3d99",
-    "watt-if-upgrade.mp4": "a22696ba5fb7b47d9d074b6ec62c1d8879b179624e89ca9d91e014d07f350143"
-  }
+    "narration-script.txt": "52956ce057bbc1ca6075f8467ae352db5c3ce49e90923c249d253c330c0e48e8",
+    "README.md": "c19595f619436195024dca41a82763a37dbbade149a4d4b0265ea9b3b1444a82",
+    "watt-if-upgrade.mp4": "22d07c9eae3f1bfe59469a0554dcc625480790cb2b01144e27417d697106970c"
+  },
+  "caption_treatment": "Box-free cream Barlow Light, 12px entrance and word-timed lavender-to-ivory colour; separate textured caption stage. Accessible full SRT."
 }

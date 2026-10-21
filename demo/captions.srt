@@ -1,140 +1,231 @@
 1
-00:00:00,300 --> 00:00:05,571
-Dinner moved. Laundry can wait. Watt If helps
-rearrange three optional
+00:00:00,695 --> 00:00:02,357
+You know that moment when the evening
 
 2
-00:00:05,629 --> 00:00:09,240
-chores, without turning a chatbot's guess into
-an appliance command.
+00:00:02,382 --> 00:00:05,342
+changes... but your to-do list doesn't?
 
 3
-00:00:09,565 --> 00:00:13,431
-This is an Alexa Plus simulation, with
-fictional household data.
+00:00:05,502 --> 00:00:07,717
+That's the idea behind Watt If.
 
 4
-00:00:19,284 --> 00:00:21,548
-Finish the dryer and dishwasher by eight,
+00:00:07,742 --> 00:00:10,330
+Three flexible chores, a few boundaries, and
 
 5
-00:00:21,641 --> 00:00:26,807
-and charge the bike by ten. Strands runs Qwen
-and calls the planning tool.
+00:00:10,355 --> 00:00:12,597
+a plan you can actually look at before
 
 6
-00:00:27,191 --> 00:00:30,383
-I inspect the checked times, approve revision
-one,
+00:00:12,622 --> 00:00:15,142
+saying yes. This is an Alexa Plus
 
 7
-00:00:30,476 --> 00:00:32,543
-and download the actual calendar.
+00:00:15,422 --> 00:00:17,262
+simulation. Let's walk through it.
 
 8
-00:00:32,663 --> 00:00:36,494
-Now the dryer must start at nine, but quiet
-hours begin at eight.
+00:00:19,436 --> 00:00:21,800
+First, dryer and dishwasher by eight.
 
 9
-00:00:36,936 --> 00:00:40,825
-No timetable fits. Approval and a new calendar
-are blocked.
+00:00:21,825 --> 00:00:23,400
+Bike charged by ten.
 
 10
-00:00:41,545 --> 00:00:45,643
-I relax the old dryer deadline to midnight and
-move quiet hours to ten.
+00:00:23,425 --> 00:00:24,905
+I check the times...
 
 11
-00:00:45,852 --> 00:00:48,279
-The nine o'clock exact start stays.
+00:00:25,025 --> 00:00:26,665
+approve... and download.
 
 12
-00:00:48,720 --> 00:00:52,946
-After reviewing the new times, I approve
-revision three and download again.
+00:00:26,700 --> 00:00:28,995
+Now, dryer at nine.
 
 13
-00:00:54,400 --> 00:00:56,850
-These are the files that actually downloaded,
+00:00:29,020 --> 00:00:30,915
+Quiet hours at eight.
 
 14
-00:00:57,024 --> 00:01:01,715
-not a fixture. Each contains three advisory
-events for fictional October
+00:00:30,940 --> 00:00:32,405
+That doesn't fit.
 
 15
-00:01:01,784 --> 00:01:05,790
-first. The corrected dryer event runs from
-nine to ten.
+00:00:32,430 --> 00:00:34,660
+Good. It refuses the request.
 
 16
-00:01:06,231 --> 00:01:10,260
-Stored proposal and approval hashes bind the
-calendar to the reviewed
+00:00:39,107 --> 00:00:40,202
+Let's make room.
 
 17
-00:01:10,318 --> 00:01:12,977
-revision. It never starts an appliance.
+00:00:40,227 --> 00:00:42,002
+Dryer finished by midnight;
 
 18
-00:01:14,500 --> 00:01:16,961
-Qwen interprets the request through Strands.
+00:00:42,027 --> 00:00:43,322
+quiet after ten.
 
 19
-00:01:17,344 --> 00:01:20,421
-Numbered source clauses, complete instruction
-checks,
+00:00:43,347 --> 00:00:45,082
+It keeps the nine o'clock start.
 
 20
-00:01:20,479 --> 00:01:23,730
-and the reused PeakShift solver constrain the
-result.
+00:00:45,107 --> 00:00:47,042
+I review... approve...
 
 21
-00:01:24,334 --> 00:01:28,734
-Fifty-eight regression tests pass. An
-independent oracle checked three
+00:00:47,067 --> 00:00:48,427
+and download again.
 
 22
-00:01:28,792 --> 00:01:32,739
-thousand five hundred forty-six scenarios with
-no mismatch.
+00:00:50,495 --> 00:00:52,510
+Here's what that last click gives us:
 
 23
-00:01:33,180 --> 00:01:35,502
-Those checks measure these bounded workflows,
+00:00:52,535 --> 00:00:54,430
+a real calendar file.
 
 24
-00:01:35,676 --> 00:01:37,766
-not general language reliability.
+00:00:54,455 --> 00:00:56,630
+The dryer goes from nine to ten.
 
 25
-00:01:39,267 --> 00:01:42,135
-The same application also runs with local
-Ollama,
+00:00:56,655 --> 00:00:58,375
+The dishwasher and bike have their own
 
 26
-00:01:42,344 --> 00:01:45,293
-and manual controls remain available without a
-model.
+00:00:58,455 --> 00:01:00,615
+slots. These are fictional household
 
 27
-00:01:45,804 --> 00:01:50,982
-This take used the same Qwen model on a
-temporary RunPod GPU through SSH.
+00:01:00,695 --> 00:01:03,030
+details, but the download is real.
 
 28
-00:01:51,423 --> 00:01:54,477
-All loads, prices, and forecasts are invented.
+00:01:03,055 --> 00:01:04,950
+And there's an important boundary here.
 
 29
-00:01:54,860 --> 00:01:58,076
-There is no live Alexa connection, measured
-energy saving,
+00:01:04,975 --> 00:01:07,870
+Approving a timetable only creates advisory
 
 30
-00:01:58,111 --> 00:02:03,022
-or device control. You decide; Watt If makes
-the tradeoff inspectable.
+00:01:07,895 --> 00:01:09,990
+calendar events. It doesn't turn anything
+
+31
+00:01:10,015 --> 00:01:12,615
+on. You still decide what happens in your
+
+32
+00:01:12,735 --> 00:01:13,295
+home.
+
+33
+00:01:14,928 --> 00:01:17,170
+The interesting part is what happens between
+
+34
+00:01:17,195 --> 00:01:18,850
+asking and approving.
+
+35
+00:01:18,875 --> 00:01:20,770
+Strands runs the language model.
+
+36
+00:01:20,795 --> 00:01:22,730
+The planning tool checks the changes against
+
+37
+00:01:22,755 --> 00:01:24,770
+the request and the household rules.
+
+38
+00:01:24,795 --> 00:01:27,010
+If the constraints clash, there's no fresh
+
+39
+00:01:27,035 --> 00:01:28,290
+plan to approve.
+
+40
+00:01:28,315 --> 00:01:30,850
+A correction creates a new revision, so
+
+41
+00:01:30,875 --> 00:01:33,395
+yesterday's yes can't quietly become
+
+42
+00:01:33,435 --> 00:01:34,930
+permission for something different.
+
+43
+00:01:34,955 --> 00:01:36,115
+The evidence includes the
+
+44
+00:01:36,395 --> 00:01:39,075
+requests, both approvals, and the files that
+
+45
+00:01:39,115 --> 00:01:40,442
+actually downloaded.
+
+46
+00:01:42,095 --> 00:01:45,137
+This recording used Qwen on a temporary GPU,
+
+47
+00:01:45,162 --> 00:01:47,270
+through a private SSH connection.
+
+48
+00:01:47,295 --> 00:01:49,830
+The app can also use local Ollama, or its
+
+49
+00:01:49,855 --> 00:01:51,910
+manual controls without a model.
+
+50
+00:01:51,935 --> 00:01:54,550
+Fifty-eight regression tests pass, alongside
+
+51
+00:01:54,575 --> 00:01:56,070
+a separate solver check.
+
+52
+00:01:56,095 --> 00:01:58,550
+Those are bounded checks, not a promise that
+
+53
+00:01:58,575 --> 00:02:00,230
+every sentence will work.
+
+54
+00:02:00,255 --> 00:02:01,910
+No live Alexa connection.
+
+55
+00:02:01,935 --> 00:02:03,430
+No appliance control.
+
+56
+00:02:03,455 --> 00:02:05,430
+No claimed energy savings.
+
+57
+00:02:05,455 --> 00:02:07,030
+Just a little more room to see your
+
+58
+00:02:07,055 --> 00:02:09,335
+choices... before you make them.
