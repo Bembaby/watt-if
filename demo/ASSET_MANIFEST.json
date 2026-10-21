@@ -16,12 +16,19 @@
     "captions.srt": "75c1dd2dd755eb412d795c6e683e256ee7e1e937542b87b5b602ecc916f4518b",
     "illustration-original.mp4": "c10cc404ecb35e563f6114ea6d11b3bdb2ff2f76ec4b032e93c9f714add35c32",
     "narration-script.txt": "52956ce057bbc1ca6075f8467ae352db5c3ce49e90923c249d253c330c0e48e8",
-    "README.md": "a1e598fec2e929cad6b1a2ca2e60edb1d236041b88e1075a54a40b61e1047c7e",
+    "README.md": "4e73d9998ed92b7b9a340d6d093c9f62a08de667ec884faf9c566dde9362dd7c",
     "watt-if-upgrade.mp4": "e2370fe692ad8973cb4ddc0e7469503004df22b77fd493ba80a889f0eb287530",
     "captions.ass": "bdba01d5ae1b0b39222aac4fa409a058c6b9a469eaba22a51350db6ca93e637d"
   },
   "caption_treatment": "Each spoken word appears only at its aligned onset, rises 8px and pops 92%-111%-100% over 150ms. Fixed word positions; box-free cream Barlow Light. Words remain through each phrase.",
   "animated_words": 303,
   "word_timing_basis": "Original ElevenLabs character timestamps, mapped to individual words and existing unaccelerated PCM paragraph positions. 30fps/ASS quantization under44ms. Timing follows provider alignment; no independent phonetic forced-alignment claim.",
-  "maximum_frame_quantization_delay_seconds": 0.038000000000000256
+  "maximum_frame_quantization_delay_seconds": 0.038000000000000256,
+  "publication": {
+    "approved_application_media_commit": "d242ec3aaa6f1ab5d195a5facc68cf49f8afcb5c",
+    "video_url": "https://youtu.be/Oq7R-jTPYzM",
+    "video_visibility": "unlisted",
+    "project_url": "https://devpost.com/software/watt-if",
+    "verified_date": "2026-10-21"
+  }
 }

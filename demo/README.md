@@ -1,4 +1,4 @@
-# Watt If demonstration candidate
+# Watt If October 21 demonstration
 
 `watt-if-upgrade.mp4` is a 130.27-second, 1920 × 1080 English presentation of the October 21 upgrade. `captions.srt` and `narration-script.txt` accompany it. Asset hashes and scope are in `ASSET_MANIFEST.json`.
 
@@ -8,6 +8,6 @@ The application sequence is a complete continuous real take at normal speed: req
 
 All household data is fictional. No live Alexa connection, appliance action, calendar import or measured household saving is shown. The same Qwen model digest ran through an explicitly disclosed temporary RunPod SSH forward. The application itself has no rental or provider-account credential. The temporary pod was removed after capture.
 
-This local candidate awaits final human review and publication approval. The original submitted video remains available as the historical baseline.
+The approved film is [published as an unlisted YouTube video](https://youtu.be/Oq7R-jTPYzM), with an English subtitle track and disclosed synthetic content. Signed-out playback and the [updated Devpost entry](https://devpost.com/software/watt-if) were verified on October 21, 2026. The original submitted video remains the historical baseline. The approved application/media commit is `d242ec3aaa6f1ab5d195a5facc68cf49f8afcb5c`; subsequent release documentation does not change the recorded executing source or movie bytes.
 
 The revised voice-over uses conversational prose, restrained delivery directions and natural paragraph pauses. All 303 spoken words appear individually at their aligned onset and pop gently in cream Barlow Condensed type, without filled boxes. Each word settles in place while the next appears; already-spoken words remain through the phrase. The editable `captions.ass` contains the word animation; `captions.srt` provides complete plain captions. Timing follows the narration provider's character alignment with at most 38 milliseconds of 30fps/ASS display quantization in this render; this is not a separate phonetic-alignment measurement. A separate textured caption area keeps the art and actual interface clear. The supplied SRT contains the complete spoken text; delivery tags are excluded. Original speech speed is preserved. End cards use the credited museum photograph.

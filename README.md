@@ -2,11 +2,11 @@
 
 **Make room for your evening.** A working household scheduling application built on PeakShift, with a Strands agent, checked time constraints, a visual evening plan, and a human-approved advisory calendar.
 
-[Watch the September8 baseline demonstration](https://youtu.be/JFKJRdyYYUI) · [Development friction log](FRICTION_LOG.md) · [Historical verification evidence](evidence/README.md)
+[Watch the October 21 demonstration](https://youtu.be/Oq7R-jTPYzM) · [Devpost project](https://devpost.com/software/watt-if) · [Development friction log](FRICTION_LOG.md) · [September 8 baseline](https://youtu.be/JFKJRdyYYUI)
 
-The October 21 upgrade adds a textured midnight/cobalt interface with licensed marble art, self-hosted typography, visible constraint review, retained unresolved requests, explicit manual replacement and persistent exact-start semantics. The existing submitted version and video are preserved. See [upgrade verification](VERIFICATION_UPGRADE.md) for current evidence and publication gates. The historical demo does not show this redesign.
+The October 21 upgrade adds a textured midnight/cobalt interface with licensed marble art, self-hosted typography, visible constraint review, retained unresolved requests, explicit manual replacement and persistent exact-start semantics. The September 8 source revision and video are preserved in history. See [upgrade verification](VERIFICATION_UPGRADE.md) for current evidence. The October demonstration shows this redesign and three real model requests.
 
-The [refreshed demonstration candidate](demo/README.md) includes synthetic narration, captions, actual continuous execution and asset credits. It awaits final publication approval. The conversation supports a deliberately small command vocabulary; use the documented examples or the manual controls for unsupported wording.
+The [published demonstration](demo/README.md) includes synthetic narration, individual animated word captions, actual continuous execution and asset credits. Its YouTube link is unlisted and was verified playable without signing in. The existing Amazon hackathon entry was updated and verified as Submitted on October 21, 2026. The conversation supports a deliberately small command vocabulary; use the documented examples or the manual controls for unsupported wording.
 
 ![October 21 redesigned interface; separate traces document real inference](evidence/upgrade-20261021/interface-desktop.png)
 
