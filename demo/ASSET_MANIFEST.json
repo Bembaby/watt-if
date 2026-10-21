@@ -13,11 +13,15 @@
   "actual_run_source": "Complete take06, no earlier attempts spliced into it. Constant compositor-matte crop; proportionally fitted above a separate caption stage. Original continuous run supplied unchanged.",
   "caption_cues": 58,
   "files": {
-    "captions.srt": "bf7b38f6be0076351f0630323cd4ab230bd4478b24818fb00165fbdf64c89d05",
+    "captions.srt": "75c1dd2dd755eb412d795c6e683e256ee7e1e937542b87b5b602ecc916f4518b",
     "illustration-original.mp4": "c10cc404ecb35e563f6114ea6d11b3bdb2ff2f76ec4b032e93c9f714add35c32",
     "narration-script.txt": "52956ce057bbc1ca6075f8467ae352db5c3ce49e90923c249d253c330c0e48e8",
-    "README.md": "c19595f619436195024dca41a82763a37dbbade149a4d4b0265ea9b3b1444a82",
-    "watt-if-upgrade.mp4": "22d07c9eae3f1bfe59469a0554dcc625480790cb2b01144e27417d697106970c"
+    "README.md": "a1e598fec2e929cad6b1a2ca2e60edb1d236041b88e1075a54a40b61e1047c7e",
+    "watt-if-upgrade.mp4": "e2370fe692ad8973cb4ddc0e7469503004df22b77fd493ba80a889f0eb287530",
+    "captions.ass": "bdba01d5ae1b0b39222aac4fa409a058c6b9a469eaba22a51350db6ca93e637d"
   },
-  "caption_treatment": "Box-free cream Barlow Light, 12px entrance and word-timed lavender-to-ivory colour; separate textured caption stage. Accessible full SRT."
+  "caption_treatment": "Each spoken word appears only at its aligned onset, rises 8px and pops 92%-111%-100% over 150ms. Fixed word positions; box-free cream Barlow Light. Words remain through each phrase.",
+  "animated_words": 303,
+  "word_timing_basis": "Original ElevenLabs character timestamps, mapped to individual words and existing unaccelerated PCM paragraph positions. 30fps/ASS quantization under44ms. Timing follows provider alignment; no independent phonetic forced-alignment claim.",
+  "maximum_frame_quantization_delay_seconds": 0.038000000000000256
 }

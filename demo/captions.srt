@@ -11,12 +11,12 @@ changes... but your to-do list doesn't?
 That's the idea behind Watt If.
 
 4
-00:00:07,742 --> 00:00:10,330
-Three flexible chores, a few boundaries, and
+00:00:07,742 --> 00:00:10,197
+Three flexible chores, a few boundaries,
 
 5
-00:00:10,355 --> 00:00:12,597
-a plan you can actually look at before
+00:00:10,222 --> 00:00:12,597
+and a plan you can actually look at before
 
 6
 00:00:12,622 --> 00:00:15,142
@@ -147,32 +147,32 @@ The planning tool checks the changes against
 the request and the household rules.
 
 38
-00:01:24,795 --> 00:01:27,010
-If the constraints clash, there's no fresh
+00:01:24,795 --> 00:01:26,570
+If the constraints clash, there's
 
 39
-00:01:27,035 --> 00:01:28,290
-plan to approve.
+00:01:26,595 --> 00:01:28,290
+no fresh plan to approve.
 
 40
-00:01:28,315 --> 00:01:30,850
-A correction creates a new revision, so
+00:01:28,315 --> 00:01:30,690
+A correction creates a new revision,
 
 41
-00:01:30,875 --> 00:01:33,395
-yesterday's yes can't quietly become
+00:01:30,715 --> 00:01:33,395
+so yesterday's yes can't quietly become
 
 42
 00:01:33,435 --> 00:01:34,930
 permission for something different.
 
 43
-00:01:34,955 --> 00:01:36,115
-The evidence includes the
+00:01:34,955 --> 00:01:35,610
+The evidence
 
 44
-00:01:36,395 --> 00:01:39,075
-requests, both approvals, and the files that
+00:01:35,635 --> 00:01:39,075
+includes the requests, both approvals, and the files that
 
 45
 00:01:39,115 --> 00:01:40,442
@@ -187,12 +187,12 @@ This recording used Qwen on a temporary GPU,
 through a private SSH connection.
 
 48
-00:01:47,295 --> 00:01:49,830
-The app can also use local Ollama, or its
+00:01:47,295 --> 00:01:49,430
+The app can also use local Ollama,
 
 49
-00:01:49,855 --> 00:01:51,910
-manual controls without a model.
+00:01:49,455 --> 00:01:51,910
+or its manual controls without a model.
 
 50
 00:01:51,935 --> 00:01:54,550
@@ -203,12 +203,12 @@ Fifty-eight regression tests pass, alongside
 a separate solver check.
 
 52
-00:01:56,095 --> 00:01:58,550
-Those are bounded checks, not a promise that
+00:01:56,095 --> 00:01:57,590
+Those are bounded checks,
 
 53
-00:01:58,575 --> 00:02:00,230
-every sentence will work.
+00:01:57,615 --> 00:02:00,230
+not a promise that every sentence will work.
 
 54
 00:02:00,255 --> 00:02:01,910
@@ -223,9 +223,9 @@ No appliance control.
 No claimed energy savings.
 
 57
-00:02:05,455 --> 00:02:07,030
-Just a little more room to see your
+00:02:05,455 --> 00:02:06,430
+Just a little more
 
 58
-00:02:07,055 --> 00:02:09,335
-choices... before you make them.
+00:02:06,455 --> 00:02:09,335
+room to see your choices... before you make them.
